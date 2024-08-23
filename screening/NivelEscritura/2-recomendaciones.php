@@ -31,52 +31,52 @@ $recomendaciones = [
         4 => "Mantener un emplazamiento adecuado y constante en escritos largos."
     ],
     'repeticiones' => [
-        1 => ".",
-        2 => ".",
-        3 => ".",
-        4 => "."
+        1 => "Practicar el uso de sinónimos para evitar repetir palabras.",
+        2 => "Practicar el uso de sinónimos para evitar repetir palabras.",
+        3 => "Variar las estructuras de las oraciones y usar pronombres para evitar repeticiones.",
+        4 => "Utilizar una variedad de palabras y estructuras complejas, además de revisar y editar textos para eliminar repeticiones."
     ],
     'vocabulario' => [
-        1 => ".",
-        2 => ".",
-        3 => ".",
-        4 => "."
+        1 => "Ampliar el vocabulario mediante la lectura.",
+        2 => "Ampliar el vocabulario mediante la lectura.",
+        3 => "Incluir adjetivos y descripciones detalladas.",
+        4 => "Utilizar un vocabulario variado y preciso."
     ],
     'conectores' => [
-        1 => "Comienza a usar conectores en tus ideas.",
-        2 => "Varía los conectores utilizados en las ideas.",
-        3 => "Trabaja en la coherencia usando conectores variados.",
-        4 => "Mantén la coherencia utilizando diferentes conectores."
+        1 => "Practicar la organización de ideas antes de escribir.",
+        2 => "Practicar la organización de ideas antes de escribir.",
+        3 => "Enfocarse en la claridad y la secuencia lógica.",
+        4 => "Refinar la coherencia en textos largos."
     ],
     'longitud' => [
-        1 => "Desarrolla frases más largas en tus escritos.",
-        2 => "Intenta escribir más de una oración.",
-        3 => "Continúa desarrollando tus ideas en varias oraciones.",
-        4 => "Sigue escribiendo con mayor profundidad."
+        1 => "Practicar la escritura de oraciones simples.",
+        2 => "Practicar la escritura de oraciones simples.",
+        3 => "Extender la escritura a párrafos completos.",
+        4 => "Redactar textos más largos y detallados."
     ],
     'puntuacion' => [
-        1 => "Utiliza el punto final para separar ideas.",
-        2 => "Intenta incorporar más puntuación en tus escritos.",
-        3 => "Trabaja en el uso correcto de los signos de puntuación.",
-        4 => "Continúa utilizando puntuación adecuada."
+        1 => "Practicar el uso básico de puntos y comas.",
+        2 => "Practicar el uso básico de puntos y comas.",
+        3 => "Enfocarse en el uso adecuado de signos de puntuación.",
+        4 => "Refinar el uso de puntuación en textos complejos."
     ],
     'uso_mayuscula' => [
-        1 => "Practica el uso correcto de mayúsculas.",
-        2 => "Asegúrate de usar mayúsculas al inicio de las oraciones.",
-        3 => "Incorpora mayúsculas en nombres propios.",
-        4 => "Sigue usando mayúsculas de forma correcta."
+        1 => "Practicar el uso de mayúsculas al inicio de las oraciones y en nombres propios.",
+        2 => "Practicar el uso de mayúsculas al inicio de las oraciones y en nombres propios.",
+        3 => "Enfocarse en el uso correcto de mayúsculas en títulos, días de la semana, meses y festividades.",
+        4 => "Refinar el uso de mayúsculas en contextos más complejos, como abreviaturas y siglas."
     ],
     'correspondencia_fonologica' => [
-        1 => "Practica la escritura fonética correcta.",
-        2 => "Trabaja en la distinción de sílabas complejas.",
-        3 => "Mantén el uso correcto de las correspondencias fonéticas.",
-        4 => "Continúa escribiendo con corrección fonológica."
+        1 => "Trabajar en la segmentación de palabras y sonidos.",
+        2 => "Trabajar en la segmentación de palabras y sonidos.",
+        3 => "Enfocarse en la corrección de errores fonológicos.",
+        4 => "Refinar la fonología en palabras complejas."
     ],
     'correspondencia_ortografica' => [
-        1 => "Corrige la ortografía en los sonidos complejos.",
-        2 => "Mejora la precisión ortográfica en las reglas comunes.",
-        3 => "Mantén la precisión ortográfica en tus escritos.",
-        4 => "Sigue escribiendo con buena ortografía."
+        1 => "Practicar las reglas ortográficas básicas.",
+        2 => "Practicar las reglas ortográficas básicas.",
+        3 => "Enfocarse en reglas ortográficas más avanzadas.",
+        4 => "Mantener la precisión ortográfica en escritos largos."
     ]
 ];
 ?>

@@ -1,5 +1,5 @@
-    <header>
-        <center>
+<header>
+    <center>
         <div>
             <a href="/screening/index.php"><img src="/screening/images/LogoJel.png" alt="Logo JEL" class="logo"></a>
             <?php
@@ -16,7 +16,7 @@
 
             ?>
         </div>
-        </center>
+    </center>
         <nav>
             <ul class="menu">
             <?php
@@ -38,4 +38,4 @@
             ?>        
             </ul>
         </nav>
-    </header>
+</header>

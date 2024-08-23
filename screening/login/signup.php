@@ -1,14 +1,19 @@
 <?php session_start(); ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Screening JEL Aprendizaje</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <link rel="stylesheet" href="/screening/login/asset/css/estilos.css">
+        <title>JEL Aprendizaje - Registrarse</title>
+        
+        <link rel="stylesheet" href="/screening/login/css/estilos.css">
         <link rel="stylesheet" href="/screening/css/stylesJel.css">
+
+        <!-- Incluye la hoja de estilos de Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        
+        <!-- Incluye la biblioteca de iconos de Font Awesome -->
         <script src="https://kit.fontawesome.com/e1d55cc160.js" crossorigin="anonymous"></script>
     
         <script>
@@ -35,12 +40,9 @@
 
 <body>
 
-<header>
-        <div class="header-content">
-            <a href="/index.php"><img src="/screening/images/LogoJel.png" alt="Logo JEL" class="logo"></a>
-            <h1>JEL APREDIZAJE - Dar de alta institución</h1>
-        </div>
-</header>
+    <?php   $GLOBALS['titulo'] = "JEL APRENDIZAJE - Registrarse";
+            include '_header.php';
+    ?>
 
     <?php
         if(!empty($_SESSION['usuario'])){
@@ -48,8 +50,6 @@
         }
     ?>
 <br>
-<! -- <div class="fondo-login">
-
     <form action="store.php" method="POST" class="col-3 login" autocomplete="off">
     
         <div class="mb-3">
@@ -148,14 +148,11 @@
         </div>
 
     </form>
-    <div class="login col-3 mt-3">
-        Tienes una cuenta? <a href="login.php" style="text-decoration: none;">Inicia Sesion</a><br>
-        Olviadaste tu contraseña? <a href="login.php" style="text-decoration: none;">Recuperar contraseña</a>
-    </div>
-<! -- </div>
+        <div class="login col-3 mt-3">
+            ¿Tienes una cuenta? <a href="login.php" style="text-decoration: none;">Inicia Sesion</a><br>
+            ¿Olviadaste tu contraseña? <a href="login.php" style="text-decoration: none;">Recuperar contraseña</a>
+        </div>
 
-</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="/login/asset/js/main.js"></script>
   </body>
 </html>
