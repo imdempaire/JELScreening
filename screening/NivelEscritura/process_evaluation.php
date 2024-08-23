@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
         $stmt = $conn->query($sql);
-        echo "Consulta exitosa";
+        // echo "Consulta exitosa";
     
         // No necesitas cerrar la conexión manualmente
         // $conn->close(); // Esto no es necesario en PDO
@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="result-container">
         <!-- <p><?php echo $message; ?></p> -->
         <p><strong>Alumno:</strong> <?php echo htmlspecialchars($nombre . ' ' . $apellido); ?></p>
-        <p><strong>ID del Estdiante:</strong> <?php echo htmlspecialchars($id_estudiante); ?></p>
+        <p><strong>ID del Estudiante:</strong> <?php echo htmlspecialchars($id_estudiante); ?></p>
         <p><strong>Grado:</strong> <?php echo htmlspecialchars($grado); ?></p>
         <h2><center>Puntuaciones Detalladas y Recomendaciones</center></h2>
         <ul>
@@ -141,42 +141,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['claridad'][$claridad]; ?></em>
             </li><br>
             <li><strong>Tamaño:</strong> <?php echo $descripciones['tamaño'][$tamaño]; ?><br>
-                &nbsp;&nbsp;<u>Recomendación</u>&nbsp;<em><?php echo $recomendaciones['tamaño'][$tamaño]; ?></em>
+                &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['tamaño'][$tamaño]; ?></em>
             </li><br>
             <li><strong>Presión:</strong> <?php echo $descripciones['presion'][$presion]; ?><br>
-                &nbsp;&nbsp;<u>Recomendación</u>&nbsp;<em><?php echo $recomendaciones['presion'][$presion]; ?></em>
+                &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['presion'][$presion]; ?></em>
             </li><br>
-            <li><strong>Emplazamiento en el Renglón:</strong> <?php echo $descripciones['emplazamiento_renglon'][$emplazamiento_renglon]; ?> - <em><?php echo $recomendaciones['emplazamiento_renglon'][$emplazamiento_renglon]; ?></em></li>
-            <li><strong>Repeticiones:</strong> <?php echo $descripciones['repeticiones'][$repeticiones]; ?> - <em><?php echo $recomendaciones['repeticiones'][$repeticiones]; ?></em></li>
-            <li><strong>Vocabulario:</strong> <?php echo $descripciones['vocabulario'][$vocabulario]; ?> - <em><?php echo $recomendaciones['vocabulario'][$vocabulario]; ?></em></li>
-            <li><strong>Conectores:</strong> <?php echo $descripciones['conectores'][$conectores]; ?> - <em><?php echo $recomendaciones['conectores'][$conectores]; ?></em></li>
-            <li><strong>Longitud:</strong> <?php echo $descripciones['longitud'][$longitud]; ?> - <em><?php echo $recomendaciones['longitud'][$longitud]; ?></em></li>
-            <li><strong>Puntuación:</strong> <?php echo $descripciones['puntuacion'][$puntuacion]; ?> - <em><?php echo $recomendaciones['puntuacion'][$puntuacion]; ?></em></li>
-            <li><strong>Uso de la Mayúscula:</strong> <?php echo $descripciones['uso_mayuscula'][$uso_mayuscula]; ?> - <em><?php echo $recomendaciones['uso_mayuscula'][$uso_mayuscula]; ?></em></li>
-            <li><strong>Correspondencia Fonológica:</strong> <?php echo $descripciones['correspondencia_fonologica'][$correspondencia_fonologica]; ?> - <em><?php echo $recomendaciones['correspondencia_fonologica'][$correspondencia_fonologica]; ?></em></li>
-            <li><strong>Correspondencia Ortográfica:</strong> <?php echo $descripciones['correspondencia_ortografica'][$correspondencia_ortografica]; ?> - <em><?php echo $recomendaciones['correspondencia_ortografica'][$correspondencia_ortografica]; ?></em></li>
+            <li><strong>Emplazamiento en el Renglón:</strong> <?php echo $descripciones['emplazamiento_renglon'][$emplazamiento_renglon]; ?><br>
+                &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['emplazamiento_renglon'][$emplazamiento_renglon]; ?></em>
+            </li><br>
+            <li><strong>Repeticiones:</strong> <?php echo $descripciones['repeticiones'][$repeticiones]; ?><br>
+                &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['repeticiones'][$repeticiones]; ?></em>
+            </li><br>
+            <li><strong>Vocabulario:</strong> <?php echo $descripciones['vocabulario'][$vocabulario]; ?><br>
+                &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['vocabulario'][$vocabulario]; ?></em>
+            </li><br>
+            <li><strong>Conectores:</strong> <?php echo $descripciones['conectores'][$conectores]; ?><br>
+                &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['conectores'][$conectores]; ?></em>
+            </li><br>
+            <li><strong>Longitud:</strong> <?php echo $descripciones['longitud'][$longitud]; ?><br>
+                &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['longitud'][$longitud]; ?></em>
+            </li><br>
+            <li><strong>Puntuación:</strong> <?php echo $descripciones['puntuacion'][$puntuacion]; ?><br>
+                &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['puntuacion'][$puntuacion]; ?></em>
+            </li><br>
+            <li><strong>Uso de la Mayúscula:</strong> <?php echo $descripciones['uso_mayuscula'][$uso_mayuscula]; ?><br>
+                &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['uso_mayuscula'][$uso_mayuscula]; ?></em>
+            </li><br>
+            <li><strong>Correspondencia Fonológica:</strong> <?php echo $descripciones['correspondencia_fonologica'][$correspondencia_fonologica]; ?><br>
+                &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['correspondencia_fonologica'][$correspondencia_fonologica]; ?></em>
+            </li><br>
+            <li><strong>Correspondencia Ortográfica:</strong> <?php echo $descripciones['correspondencia_ortografica'][$correspondencia_ortografica]; ?><br>
+                &nbsp;&nbsp;<u>Recomendación</u>:&nbsp;<em><?php echo $recomendaciones['correspondencia_ortografica'][$correspondencia_ortografica]; ?></em>
+            </li><br>
         </ul><br>
         <h2><center>Ejercicios recomendados</center></h2>
         <ul>
-            <li><strong>Tipografía:</strong>&nbsp;&nbsp;<em><?php echo $ejercicios['tipografia'][$tipografia]; ?>   </em></li><br>
-            <li><strong>Claridad:</strong>  &nbsp;&nbsp;<em><?php echo $ejercicios['claridad'][$claridad]; ?>       </em></li><br>
-            <li><strong>Tamaño:</strong> <?php echo $descripciones['tamaño'][$tamaño]; ?><br>
-                &nbsp;&nbsp;Ejercicios:&nbsp;<em><?php echo $ejercicios['tamaño'][$tamaño]; ?></em>
-            </li><br>
-            <li><strong>Presión:</strong> <?php echo $descripciones['presion'][$presion]; ?><br>
-                &nbsp;&nbsp;Ejercicios:&nbsp;<em><?php echo $ejercicios['presion'][$presion]; ?></em>
-            </li><br>
-            <li><strong>Emplazamiento en el Renglón:</strong> <?php echo $descripciones['emplazamiento_renglon'][$emplazamiento_renglon]; ?> - <em><?php echo $recomendaciones['emplazamiento_renglon'][$emplazamiento_renglon]; ?></em></li>
-            <li><strong>Repeticiones:</strong> <?php echo $descripciones['repeticiones'][$repeticiones]; ?> - <em><?php echo $recomendaciones['repeticiones'][$repeticiones]; ?></em></li>
-            <li><strong>Vocabulario:</strong> <?php echo $descripciones['vocabulario'][$vocabulario]; ?> - <em><?php echo $recomendaciones['vocabulario'][$vocabulario]; ?></em></li>
-            <li><strong>Conectores:</strong> <?php echo $descripciones['conectores'][$conectores]; ?> - <em><?php echo $recomendaciones['conectores'][$conectores]; ?></em></li>
-            <li><strong>Longitud:</strong> <?php echo $descripciones['longitud'][$longitud]; ?> - <em><?php echo $recomendaciones['longitud'][$longitud]; ?></em></li>
-            <li><strong>Puntuación:</strong> <?php echo $descripciones['puntuacion'][$puntuacion]; ?> - <em><?php echo $recomendaciones['puntuacion'][$puntuacion]; ?></em></li>
-            <li><strong>Uso de la Mayúscula:</strong> <?php echo $descripciones['uso_mayuscula'][$uso_mayuscula]; ?> - <em><?php echo $recomendaciones['uso_mayuscula'][$uso_mayuscula]; ?></em></li>
-            <li><strong>Correspondencia Fonológica:</strong> <?php echo $descripciones['correspondencia_fonologica'][$correspondencia_fonologica]; ?> - <em><?php echo $recomendaciones['correspondencia_fonologica'][$correspondencia_fonologica]; ?></em></li>
-            <li><strong>Correspondencia Ortográfica:</strong> <?php echo $descripciones['correspondencia_ortografica'][$correspondencia_ortografica]; ?> - <em><?php echo $recomendaciones['correspondencia_ortografica'][$correspondencia_ortografica]; ?></em></li>
+            <li><strong>Tipografía:</strong>                    &nbsp;<em><?php echo $ejercicios['tipografia'][$tipografia]; ?>                                     </em></li><br>
+            <li><strong>Claridad:</strong>                      &nbsp;<em><?php echo $ejercicios['claridad'][$claridad]; ?>                                         </em></li><br>
+            <li><strong>Tamaño:</strong>                        &nbsp;<em><?php echo $ejercicios['tamaño'][$tamaño]; ?>                                             </em></li><br>
+            <li><strong>Presión:</strong>                       &nbsp;<em><?php echo $ejercicios['presion'][$presion]; ?>                                           </em></li><br>
+            <li><strong>Emplazamiento en el Renglón:</strong>   &nbsp;<em><?php echo $ejercicios['emplazamiento_renglon'][$emplazamiento_renglon]; ?>               </em></li><br>
+            <li><strong>Repeticiones:</strong>                  &nbsp;<em><?php echo $ejercicios['repeticiones'][$repeticiones]; ?>                                 </em></li><br>
+            <li><strong>Vocabulario:</strong>                   &nbsp;<em><?php echo $ejercicios['vocabulario'][$vocabulario]; ?>                                   </em></li><br>
+            <li><strong>Conectores:</strong>                    &nbsp;<em><?php echo $ejercicios['conectores'][$conectores]; ?>                                     </em></li><br>
+            <li><strong>Longitud:</strong>                      &nbsp;<em><?php echo $ejercicios['longitud'][$longitud]; ?>                                         </em></li><br>
+            <li><strong>Puntuación:</strong>                    &nbsp;<em><?php echo $ejercicios['puntuacion'][$puntuacion]; ?>                                     </em></li><br>
+            <li><strong>Uso de la Mayúscula:</strong>           &nbsp;<em><?php echo $ejercicios['uso_mayuscula'][$uso_mayuscula]; ?>                               </em></li><br>
+            <li><strong>Correspondencia Fonológica:</strong>    &nbsp;<em><?php echo $ejercicios['correspondencia_fonologica'][$correspondencia_fonologica]; ?>     </em></li><br>
+            <li><strong>Correspondencia Ortográfica:</strong>   &nbsp;<em><?php echo $ejercicios['correspondencia_ortografica'][$correspondencia_ortografica]; ?>   </em></li><br>
         </ul>
-
 
         <p><strong>Total de Puntos:</strong> <?php echo $total_puntos; ?></p>
         <p><strong>Observaciones:</strong> <?php echo htmlspecialchars($observaciones); ?></p>

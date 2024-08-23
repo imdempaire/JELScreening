@@ -85,26 +85,31 @@ $sql .= " ORDER BY $sort_field $order LIMIT $offset, $results_per_page";
 $result = $conn->query($sql);
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado Grupal de Evaluaciones</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Listado de Evaluaciones</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
     <!-- Enlace a Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="css/listado.css"> 
+    <link rel="stylesheet" type="text/css" href="css/listado.css">
 </head>
 
 <body>
 
-    <?php   $GLOBALS['titulo'] = "Plataforma de Screening de IA JEL Aprendizaje";
+<?php   $GLOBALS['titulo'] = "Plataforma de Screening de IA JEL Aprendizaje";
             include '../_header.php';
     ?>
 
-    <h1>Listado Grupal de Evaluaciones</h1>
+    <?php if (isset($_SESSION['message'])): ?>
+        <div class="alert alert-info">
+            <?= $_SESSION['message'] ?>
+        </div>
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
 
     <div class="filters-container">
         <!-- Filtro por Nombre -->
@@ -190,33 +195,105 @@ $result = $conn->query($sql);
         </div>
     </div>
 
-    <table>
+
+
+    <table class="table">
         <thead>
             <tr>
-                <th><center></center>Nombre</th>
-                <th><center>Apellido</center></th>
-                <th><center>ID del Estudiante</center></th>
-                <th><center>Grado</center></th>
-                <th><center>División</center></th>
-                <th><center>Tipo.</center></th>
-                <th><center>Clar.</center></th>
-                <th><center>Tama.</center></th>
-                <th><center>Pres.</center></th>
-                <th><center>Empl.</center></th>
-                <th><center>Repe.</center></th>
-                <th><center>Voca.</center></th>
-                <th><center>Cone.</center></th>
-                <th><center>Long.</center></th>
-                <th><center>Punt.</center></th>
-                <th><center>Mayú.v</center></th>
-                <th><center>C.Fo.</center></th>
-                <th><center>C.Ort.</center></th>
-                <th><center>Archivo</center></th>
-                <th><center>Acciones</center></th>
+                <th>
+                    Nombre
+                    <a href="?sort=nombre&order=<?php echo $sort_field === 'nombre' ? $order_toggle : 'ASC'; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
+                        <?php if ($sort_field === 'nombre' && $order === 'ASC'): ?>
+                            &#9650;
+                        <?php elseif ($sort_field === 'nombre' && $order === 'DESC'): ?>
+                            &#9660;
+                        <?php else: ?>
+                            &#9651;
+                        <?php endif; ?>
+                    </a>
+                </th>
+                <th>
+                    Apellido
+                    <a href="?sort=apellido&order=<?php echo $sort_field === 'apellido' ? $order_toggle : 'ASC'; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
+                        <?php if ($sort_field === 'apellido' && $order === 'ASC'): ?>
+                            &#9650;
+                        <?php elseif ($sort_field === 'apellido' && $order === 'DESC'): ?>
+                            &#9660;
+                        <?php else: ?>
+                            &#9651;
+                        <?php endif; ?>
+                    </a>
+                </th>
+                <th>
+                    ID del Estudiante
+                    <a href="?sort=id_estudiante&order=<?php echo $sort_field === 'id_estudiante' ? $order_toggle : 'ASC'; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
+                        <?php if ($sort_field === 'id_estudiante' && $order === 'ASC'): ?>
+                            &#9650;
+                        <?php elseif ($sort_field === 'id_estudiante' && $order === 'DESC'): ?>
+                            &#9660;
+                        <?php else: ?>
+                            &#9651;
+                        <?php endif; ?>
+                    </a>
+                </th>
+                <th>
+                    Grado
+                    <a href="?sort=grado&order=<?php echo $sort_field === 'grado' ? $order_toggle : 'ASC'; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
+                        <?php if ($sort_field === 'grado' && $order === 'ASC'): ?>
+                            &#9650;
+                        <?php elseif ($sort_field === 'grado' && $order === 'DESC'): ?>
+                            &#9660;
+                        <?php else: ?>
+                            &#9651;
+                        <?php endif; ?>
+                    </a>
+                </th>
+                <th>
+                    División
+                    <a href="?sort=division&order=<?php echo $sort_field === 'division' ? $order_toggle : 'ASC'; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
+                        <?php if ($sort_field === 'division' && $order === 'ASC'): ?>
+                            &#9650;
+                        <?php elseif ($sort_field === 'division' && $order === 'DESC'): ?>
+                            &#9660;
+                        <?php else: ?>
+                            &#9651;
+                        <?php endif; ?>
+                    </a>
+                </th>
+                <th>
+                    Total Puntos
+                    <a href="?sort=total_puntos&order=<?php echo $sort_field === 'total_puntos' ? $order_toggle : 'ASC'; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
+                        <?php if ($sort_field === 'total_puntos' && $order === 'ASC'): ?>
+                            &#9650;
+                        <?php elseif ($sort_field === 'total_puntos' && $order === 'DESC'): ?>
+                            &#9660;
+                        <?php else: ?>
+                            &#9651;
+                        <?php endif; ?>
+                    </a>
+                </th>
+                <th>
+                    Fecha
+                    <a href="?sort=fecha&order=<?php echo $sort_field === 'fecha' ? $order_toggle : 'ASC'; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
+                        <?php if ($sort_field === 'fecha' && $order === 'ASC'): ?>
+                            &#9650;
+                        <?php elseif ($sort_field === 'fecha' && $order === 'DESC'): ?>
+                            &#9660;
+                        <?php else: ?>
+                            &#9651;
+                        <?php endif; ?>
+                    </a>
+                </th>
+                <th>Archivo</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <?php if ($result->num_rows > 0): ?>
+            <?php
+            // Obtener los registros de la base de datos
+            $sql = "SELECT * FROM evaluaciones WHERE colegio = '$nombre_colegio' LIMIT $offset, $results_per_page";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($row['nombre']); ?></td>
@@ -224,19 +301,8 @@ $result = $conn->query($sql);
                         <td><?php echo htmlspecialchars($row['id_estudiante']); ?></td>
                         <td><?php echo htmlspecialchars($row['grado']); ?></td>
                         <td><?php echo htmlspecialchars($row['division']); ?></td>
-                        <td><?php echo htmlspecialchars($row['tipografia']); ?></td>
-                        <td><?php echo htmlspecialchars($row['claridad']); ?></td>
-                        <td><?php echo htmlspecialchars($row['tamano']); ?></td>
-                        <td><?php echo htmlspecialchars($row['presion']); ?></td>
-                        <td><?php echo htmlspecialchars($row['emplazamiento_renglon']); ?></td>
-                        <td><?php echo htmlspecialchars($row['repeticiones']); ?></td>
-                        <td><?php echo htmlspecialchars($row['vocabulario']); ?></td>
-                        <td><?php echo htmlspecialchars($row['conectores']); ?></td>
-                        <td><?php echo htmlspecialchars($row['longitud']); ?></td>
-                        <td><?php echo htmlspecialchars($row['puntuacion']); ?></td>
-                        <td><?php echo htmlspecialchars($row['uso_mayuscula']); ?></td>
-                        <td><?php echo htmlspecialchars($row['correspondencia_fonologica']); ?></td>
-                        <td><?php echo htmlspecialchars($row['correspondencia_ortografica']); ?></td>
+                        <td><?php echo htmlspecialchars($row['total_puntos']); ?></td>
+                        <td><?php echo htmlspecialchars($row['fecha']); ?></td>
                         <td style="text-align: center;">
                             <?php if (!empty($row['archivo'])): ?>
                                 <i class="fas fa-check-circle icon-yes"></i>
@@ -245,14 +311,14 @@ $result = $conn->query($sql);
                             <?php endif; ?>
                         </td>
                         <td>
-                            <!-- Aquí puedes agregar acciones como ver, editar, borrar -->
-                            <a href="ver_evaluacion.php?id=<?php echo $row['id']; ?>">Ver</a>
+                            <a href="ver_evaluacion.php?id=<?php echo $row['id']; ?>" class="btn btn-info">Ver</a>
+                            <a href="delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro?');"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
             <?php else: ?>
                 <tr>
-                    <td colspan="19">No hay evaluaciones registradas.</td>
+                    <td colspan="9">No hay evaluaciones registradas.</td>
                 </tr>
             <?php endif; ?>
         </tbody>
@@ -267,9 +333,7 @@ $result = $conn->query($sql);
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <a href="?page=<?php echo $i; ?>&sort=<?php echo $sort_field; ?>&order=<?php echo $order; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>" <?php if ($i == $current_page) echo 'class="active"'; ?>>
-                    <?php echo $i; ?>
-                </a>
+                <a href="?page=<?php echo $i; ?>&sort=<?php echo $sort_field; ?>&order=<?php echo $order; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>" <?php if ($i == $current_page) echo 'class="active"'; ?>><?php echo $i; ?></a>
             <?php endfor; ?>
 
             <?php if ($current_page < $total_pages): ?>
@@ -277,8 +341,5 @@ $result = $conn->query($sql);
             <?php endif; ?>
         </div>
     </div>
-
-    <button onclick="window.location.href='index.php'">Realizar Nueva Evaluación</button>
 </body>
 </html>
-<?php $conn->close(); ?>

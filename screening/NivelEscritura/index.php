@@ -18,7 +18,7 @@
 <body>
 
 <?php   
-        $GLOBALS['titulo'] = "Plataforma de Screening de IA JEL Aprendizaje";include '../_header.php';
+        $GLOBALS['titulo'] = "Evaluación de Escritura";include '../_header.php';
     
     // Inicio 
 

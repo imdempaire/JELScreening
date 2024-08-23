@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
         $stmt = $conn->query($sql);
-        echo "Consulta exitosa";
+        // echo "Consulta exitosa";
     
         // No necesitas cerrar la conexión manualmente
         // $conn->close(); // Esto no es necesario en PDO
