@@ -4,7 +4,7 @@ $recomendaciones = [
         1 => "Practicar el trazado en minúscula o script por semejanza en las líneas que llevan.",
         2 => "Practicar el trazado en minúscula o script por semejanza en las líneas que llevan.",
         3 => "Trabajar con renglón pautado el afianzamiento del uso del alfabeto imprenta respetando las mayúsculas para iniciar palabras. Se puede realizar la mayúscula a color para mayor afianzamiento.Luego de afianzar la minúscula, introducir el alfabeto cursivo por familia de trazado también verbalizando la direccionalidad de los mismos. Realizar tareas de copia y dictado.",
-        4 => "Pasar un teto de una tipografía a la otra. Reforzar el trazado de mayúsculas en cursiva.."
+        4 => "Pasar un texto de una tipografía a la otra. Reforzar el trazado de mayúsculas en cursiva."
     ],
     'claridad' => [
         1 => "Practicar trazos básicos de letras y números.",

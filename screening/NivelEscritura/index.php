@@ -108,14 +108,14 @@
             <input type="text" id="apellido" name="apellido" value="<?php echo htmlspecialchars($apellido); ?>" readonly><br><br>
 
             <label for="grado">Grado:</label>
-        <select id="grado" name="grado" required>
-            <option value="1er grado">1er grado</option>
-            <option value="2do grado">2do grado</option>
-            <option value="3er grado">3er grado</option>
-            <option value="4to grado">4to grado</option>
-            <option value="5to grado">5to grado</option>
-            <option value="6to grado">6to grado</option>
-        </select>
+                <select id="grado" name="grado" required>
+                    <option value="1er grado">1er grado</option>
+                    <option value="2do grado">2do grado</option>
+                    <option value="3er grado">3er grado</option>
+                    <option value="4to grado">4to grado</option>
+                    <option value="5to grado">5to grado</option>
+                    <option value="6to grado">6to grado</option>
+                </select>
         
         <label for="division">División:</label>
             <select id="division" name="division" required>

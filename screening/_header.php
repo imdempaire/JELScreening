@@ -22,7 +22,7 @@
             <?php
                 if (isset($_SESSION['Nombre'])) {
                     // echo "<li><a href=\"/screening/NivelEscritura/listado.php\">Informes</a></li>";
-                    echo "<li><a href=\"_cerrar_session.php\">Cerrar Sesion (".$_SESSION["Nombre"].")</a></li>";
+                    echo "<li><a href=\"/screening/_cerrar_session.php\">Cerrar Sesion (".$_SESSION["Nombre"].")</a></li>";
                     if ($_SESSION['Nombre'] == "Admin") {
                         echo "<li><a href=\"/screening/_AdminColegio.php\" style=\"color: red;\">Elegir Colegio";
                         if (isset($_SESSION['colegio'])) {

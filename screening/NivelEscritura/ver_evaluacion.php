@@ -44,6 +44,7 @@ if ($result->num_rows > 0) {
         <p><strong>Alumno:</strong> <?php echo htmlspecialchars($evaluacion['nombre'] . ' ' . $evaluacion['apellido']); ?></p>
         <p><strong>ID del Estudiante:</strong> <?php echo htmlspecialchars($evaluacion['id_estudiante']); ?></p>
         <p><strong>Grado:</strong> <?php echo htmlspecialchars($evaluacion['grado']); ?></p>
+
         <h2><center>Puntuaciones Detalladas y Recomendaciones</center></h2>
         <ul>
             <li><strong>Tipografía:</strong> <?php echo $descripciones['tipografia'][$evaluacion['tipografia']]; ?><br>
@@ -106,6 +107,20 @@ if ($result->num_rows > 0) {
         <p><strong>Total de Puntos:</strong> <?php echo htmlspecialchars($evaluacion['total_puntos']); ?></p>
         <p><strong>Observaciones:</strong> <?php echo htmlspecialchars($evaluacion['observaciones']); ?></p>
         <p><strong>Fecha:</strong> <?php echo htmlspecialchars($evaluacion['fecha']); ?></p>
+
+        <?php
+            $upload_dir = 'uploads/';   // Directorio donde se guardan los archivos subidos
+            $file_path = $upload_dir . $evaluacion['archivo'];  // Ruta del archivo subido
+            if (file_exists($file_path)) {
+                echo '<p><strong>Archivo Subido:</strong> <a href="' . $file_path . '" target="_blank">' . $evaluacion['archivo'] . '</a></p>';
+        
+                // Mostrar la imagen subida
+        ?>        
+                <img src="<?php echo htmlspecialchars($file_path); ?>" alt="Archivo Subido" style="max-width: 800px; max-height: 800px;">
+        <?php
+            }
+        ?>
+
     </div>
     <button onclick="window.location.href='listado.php'">Volver al Listado</button>
 </body>

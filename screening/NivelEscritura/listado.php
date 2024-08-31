@@ -85,11 +85,11 @@ $sql .= " ORDER BY $sort_field $order LIMIT $offset, $results_per_page";
 $result = $conn->query($sql);
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Listado de Evaluaciones</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
@@ -100,11 +100,18 @@ $result = $conn->query($sql);
 
 <body>
 
-    <?php   $GLOBALS['titulo'] = "Plataforma de Screening de IA JEL Aprendizaje";
+<?php   $GLOBALS['titulo'] = "Plataforma de Screening de IA JEL Aprendizaje";
             include '../_header.php';
     ?>
 
-    <h1>Listado de Evaluaciones</h1>
+<h1>Listado de Evaluaciones</h1>
+
+    <?php if (isset($_SESSION['message'])): ?>
+        <div class="alert alert-info">
+            <?= $_SESSION['message'] ?>
+        </div>
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
 
     <div class="filters-container">
         <!-- Filtro por Nombre -->
@@ -190,7 +197,9 @@ $result = $conn->query($sql);
         </div>
     </div>
 
-    <table>
+
+
+    <table class="table">
         <thead>
             <tr>
                 <th>
@@ -282,7 +291,11 @@ $result = $conn->query($sql);
             </tr>
         </thead>
         <tbody>
-            <?php if ($result->num_rows > 0): ?>
+            <?php
+            // Obtener los registros de la base de datos
+            $sql = "SELECT * FROM evaluaciones WHERE colegio = '$nombre_colegio' LIMIT $offset, $results_per_page";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <tr>
                         <td><?php echo htmlspecialchars($row['nombre']); ?></td>
@@ -300,8 +313,8 @@ $result = $conn->query($sql);
                             <?php endif; ?>
                         </td>
                         <td>
-                            <!-- Aquí puedes agregar acciones como ver, editar, borrar -->
-                            <a href="ver_evaluacion.php?id=<?php echo $row['id']; ?>">Ver</a>
+                            <a href="ver_evaluacion.php?id=<?php echo $row['id']; ?>" class="btn btn-info">Ver</a>
+                            <a href="delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro?');"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -322,9 +335,7 @@ $result = $conn->query($sql);
             <?php endif; ?>
 
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <a href="?page=<?php echo $i; ?>&sort=<?php echo $sort_field; ?>&order=<?php echo $order; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>" <?php if ($i == $current_page) echo 'class="active"'; ?>>
-                    <?php echo $i; ?>
-                </a>
+                <a href="?page=<?php echo $i; ?>&sort=<?php echo $sort_field; ?>&order=<?php echo $order; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>" <?php if ($i == $current_page) echo 'class="active"'; ?>><?php echo $i; ?></a>
             <?php endfor; ?>
 
             <?php if ($current_page < $total_pages): ?>
@@ -332,8 +343,5 @@ $result = $conn->query($sql);
             <?php endif; ?>
         </div>
     </div>
-
-    <button onclick="window.location.href='index.php'">Realizar Nueva Evaluación</button>
 </body>
 </html>
-<?php $conn->close(); ?>

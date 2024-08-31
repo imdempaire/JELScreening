@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $file_type = mime_content_type($_FILES['evaluation_file']['tmp_name']);
         
         if (in_array($file_type, $allowed_types)) {
-            $file_name = basename($_FILES['evaluation_file']['name']);
+            $file_name = $colegio.$nombre.$apellido.basename($_FILES['evaluation_file']['name']);
             $file_path = $upload_dir . $file_name;
             if (move_uploaded_file($_FILES['evaluation_file']['tmp_name'], $file_path)) {
                 $file_uploaded = true;
@@ -90,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //    }
 
     $servername = "localhost"; $username = "root"; $password = ""; $dbname = "jeldata_24";
+    // $servername = "jelaprendizajecom.netfirmsmysql.com"; $username = "nacho"; $password = "nacho2024"; $dbname = "jeldata_24";
     try {
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         // Establecer el modo de error a excepciones
