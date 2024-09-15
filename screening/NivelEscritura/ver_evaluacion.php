@@ -122,6 +122,6 @@ if ($result->num_rows > 0) {
         ?>
 
     </div>
-    <button onclick="window.location.href='listado.php'">Volver al Listado</button>
+    <button onclick="window.location.href='/screening/NivelEscritura/Informes/ListadoResumido.php'">Volver al Listado</button>
 </body>
 </html>

@@ -1,4 +1,5 @@
-        <!-- GRAFISMO -->
+        <!-- 1er Bloque - GRAFISMO -->
+        <h1>Grafismo</h1> 
         <h2>Tipografía</h2>
         <div class="option-group">
             <div class="rectangle">
@@ -99,7 +100,8 @@
             </div>
         </div>
 
-        <!-- IDEACIÓN -->
+        <!-- 2do Blque - IDEACIÓN / COMPOSICION ESCRITA -->
+        <h1>Composición escrita</h1>          
         <h2>Repeticiones</h2>
         <div class="option-group">
             <div class="rectangle">
@@ -180,7 +182,8 @@
             </div>
         </div>
 
-        <!-- PUNTUACIÓN -->
+        <!-- 3er Blque - PUNTUACIÓN / CONVENCIONES -->
+        <h1>Convenciones</h1>    
         <h2>Puntuación</h2>
         <div class="option-group">
             <div class="rectangle">

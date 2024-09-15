@@ -1,5 +1,4 @@
 <?php
-    // En esta version le agregue los totales por grafismo, composicion escrita y convenciones.
     session_start();
     include '../_conexionMySQL.php';
     
@@ -64,29 +63,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correspondencia_ortografica = isset($_POST['orthographic_correspondence']) ? (int)$_POST['orthographic_correspondence'] : 0;
 
     // Sumar todas las puntuaciones
-        $total_puntos = $tipografia + $claridad + $tamaño + $presion + $emplazamiento_renglon +
-                    $repeticiones + $vocabulario + $conectores + $longitud + 
-                    $puntuacion + $uso_mayuscula + $correspondencia_fonologica + $correspondencia_ortografica;
-
-        $total_puntos_grafismo = $tipografia + $claridad + $tamaño + $presion + $emplazamiento_renglon;
-        $total_puntos_composicion_escrita = $repeticiones + $vocabulario + $conectores + $longitud;
-        $total_puntos_convenciones = $puntuacion + $uso_mayuscula + $correspondencia_fonologica + $correspondencia_ortografica;
+    $total_puntos = $tipografia + $claridad + $tamaño + $presion + $emplazamiento_renglon +
+                    $repeticiones + $vocabulario + $conectores + $longitud + $puntuacion +
+                    $uso_mayuscula + $correspondencia_fonologica + $correspondencia_ortografica;
 
     // Insertar en la base de datos
     $sql = "INSERT INTO evaluaciones (
-                colegio, nombre, apellido, id_estudiante, grado,
-                tipografia, claridad, tamano, presion, emplazamiento_renglon, 
-                repeticiones, vocabulario, conectores, longitud,
-                puntuacion, uso_mayuscula, correspondencia_fonologica, correspondencia_ortografica,
-                total_puntos, total_puntos_grafismo, total_puntos_composicion_escrita, total_puntos_convenciones,
-                archivo, division, observaciones
+                colegio, nombre, apellido, id_estudiante, grado, tipografia, claridad, tamano, presion,
+                emplazamiento_renglon, repeticiones, vocabulario, conectores, longitud,
+                puntuacion, uso_mayuscula, correspondencia_fonologica,
+                correspondencia_ortografica, total_puntos, archivo, division, observaciones
             ) VALUES (
-                '$colegio', '$nombre', '$apellido', '$id_estudiante', '$grado',
-                $tipografia, $claridad, $tamaño, $presion, $emplazamiento_renglon, 
-                $repeticiones, $vocabulario, $conectores, $longitud,
-                $puntuacion, $uso_mayuscula, $correspondencia_fonologica, $correspondencia_ortografica, 
-                $total_puntos, $total_puntos_grafismo, $total_puntos_composicion_escrita, $total_puntos_convenciones,
-                '$file_name', '$division', '$observaciones'
+                '$colegio', '$nombre', '$apellido', '$id_estudiante', '$grado', $tipografia, $claridad, $tamaño, $presion,
+                $emplazamiento_renglon, $repeticiones, $vocabulario, $conectores, $longitud,
+                $puntuacion, $uso_mayuscula, $correspondencia_fonologica,
+                $correspondencia_ortografica, $total_puntos, '$file_name', '$division', '$observaciones'
             )";
 
 //    if ($conn->query($sql) === TRUE) {

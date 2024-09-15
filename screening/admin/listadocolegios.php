@@ -80,6 +80,7 @@ if ($filtro_pais) {
 $sql .= " ORDER BY $sort_field $order LIMIT $offset, $results_per_page";
 $result = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -87,54 +88,24 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de Colegios</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
     <!-- Enlace a Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        .filters-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
 
-        .filter-box {
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
-            margin: 5px;
-        }
+    <link rel="stylesheet" type="text/css" href="/screening/css/listado.css">
 
-        .filter-box label, .filter-box select, .filter-box input {
-            margin-right: 10px;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .pagination a {
-            margin: 0 5px;
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        .pagination a.active {
-            font-weight: bold;
-            text-decoration: underline;
-            color: #000;
-        }
-
-        .total-colegios {
-            font-weight: bold;
-        }
-    </style>
+    <!-- Enlace a Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
 </head>
+
 <body>
+
+    <?php   $GLOBALS['titulo'] = "Screening de IA JEL Aprendizaje";
+            include '../_header.php';
+    ?>
+
     <h1>Listado de Colegios</h1>
 
     <div class="filters-container">
