@@ -5,12 +5,12 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<?php   $GLOBALS['titulo'] = "Evaluación de Escritura";
+<?php   $GLOBALS['titulo'] = "Screening de Escritura";
         include '../_head.php';
 ?>
 
 <body>
-    <?php   $GLOBALS['titulo'] = "Evaluación de Escritura";
+    <?php   $GLOBALS['titulo'] = "Screening de Escritura";
             include '../_header.php';
     ?>
     <main>

@@ -158,57 +158,6 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                         $promedio_longitud[] = $row['promedio_longitud'];
                     }
                 }
-
-        // Obtener los datos para el gráfico de total_puntos_convenciones
-        $sql_total_puntos_convenciones = "SELECT grado, AVG(total_puntos_convenciones) as promedio_total_puntos_convenciones FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
-        $result_total_puntos_convenciones = $conn->query($sql_total_puntos_convenciones);
-        $promedio_total_puntos_convenciones = [];
-        if ($result_total_puntos_convenciones->num_rows > 0) {
-            while ($row = $result_total_puntos_convenciones->fetch_assoc()) {
-                $promedio_total_puntos_convenciones[] = $row['promedio_total_puntos_convenciones'];
-            }
-        }
-
-                // Obtener los datos para el gráfico de puntuacion
-                $sql_puntuacion = "SELECT grado, AVG(puntuacion) as promedio_puntuacion FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
-                $result_puntuacion = $conn->query($sql_puntuacion);
-                $promedio_puntuacion = [];
-                if ($result_puntuacion->num_rows > 0) {
-                    while ($row = $result_puntuacion->fetch_assoc()) {
-                        $promedio_puntuacion[] = $row['promedio_puntuacion'];
-                    }
-                }
-
-                // Obtener los datos para el gráfico de uso_mayuscula
-                $sql_uso_mayuscula = "SELECT grado, AVG(uso_mayuscula) as promedio_uso_mayuscula FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
-                $result_uso_mayuscula = $conn->query($sql_uso_mayuscula);
-                $promedio_uso_mayuscula = [];
-                if ($result_uso_mayuscula->num_rows > 0) {
-                    while ($row = $result_uso_mayuscula->fetch_assoc()) {
-                        $promedio_uso_mayuscula[] = $row['promedio_uso_mayuscula'];
-                    }
-                }
-                
-                // Obtener los datos para el gráfico de correspondencia_fonologica
-                $sql_correspondencia_fonologica = "SELECT grado, AVG(correspondencia_fonologica) as promedio_correspondencia_fonologica FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
-                $result_correspondencia_fonologica = $conn->query($sql_correspondencia_fonologica);
-                $promedio_correspondencia_fonologica = [];
-                if ($result_correspondencia_fonologica->num_rows > 0) {
-                    while ($row = $result_correspondencia_fonologica->fetch_assoc()) {
-                        $promedio_correspondencia_fonologica[] = $row['promedio_correspondencia_fonologica'];
-                    }
-                }
-
-                // Obtener los datos para el gráfico de correspondencia_ortografica
-                $sql_correspondencia_ortografica = "SELECT grado, AVG(correspondencia_ortografica) as promedio_correspondencia_ortografica FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
-                $result_correspondencia_ortografica = $conn->query($sql_correspondencia_ortografica);
-                $promedio_correspondencia_ortografica = [];
-                if ($result_correspondencia_ortografica->num_rows > 0) {
-                    while ($row = $result_correspondencia_ortografica->fetch_assoc()) {
-                        $promedio_correspondencia_ortografica[] = $row['promedio_correspondencia_ortografica'];
-                    }
-                }
-
 ?>
 
 <!DOCTYPE html>
@@ -216,22 +165,13 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Screening de Escritura</title>
-
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" type="text/css" href="../../css/styles.css">
-
+    <title>Gráficos de Barras</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
-    <?php   $GLOBALS['titulo'] = "Screening de Escritura";
-            include '../../_header.php';
-    ?>
-
     <div class="container">
-        <h1>Informe Grupal</h1>
+        <h1>Gráficos de Barras</h1>
         <form method="post" action="">
             <div class="mb-3">
                 <label for="grado" class="form-label">Seleccione el Grado</label>
@@ -284,14 +224,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
             <!-- <canvas id="myChartConectores" height="8" width="100"></canvas> -->
             <!-- <h2><center>Longitud (%)</center></h2> -->
             <!-- <canvas id="myChartLongitud" height="8" width="100"></canvas> -->
-
-        <br><br><br>
-        <h2><center>Convenciones (%)</center></h2>
-        <canvas id="myChartPuntosTotalesConvenciones" height="8" width="100"></canvas>
-        <br><br>
-            <!-- <h2><center>Detalle Convenciones (%)</center></h2> -->
-            <canvas id="myChartConvenciones" height="20" width="100"></canvas>
-
+            
     </div>
     <script>
         // Obtener los datos de PHP
@@ -308,11 +241,6 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
             const promedioVocabulario = <?php echo json_encode($promedio_vocabulario); ?>;
             const promedioConectores = <?php echo json_encode($promedio_conectores); ?>;
             const promedioLongitud = <?php echo json_encode($promedio_longitud); ?>;
-        const promedioPuntosConvenciones = <?php echo json_encode($promedio_total_puntos_convenciones); ?>;
-            const promedioPuntuacion = <?php echo json_encode($promedio_puntuacion); ?>;
-            const promedioUsoMayuscula = <?php echo json_encode($promedio_uso_mayuscula); ?>;
-            const promedioCorrespondenciaFonologica = <?php echo json_encode($promedio_correspondencia_fonologica); ?>;
-            const promedioCorrespondenciaOrtografica = <?php echo json_encode($promedio_correspondencia_ortografica); ?>;
 
     // CONVERRTIR LOS DATOS A PORCENTAJES
 
@@ -364,26 +292,6 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
             const maxLongitud = 4; // Ajusta este valor según el máximo posible de longitud
             const promedioLongitudPorcentaje = promedioLongitud.map(longitud => (longitud / maxLongitud) * 100);
 
-        // Convertir los puntos_convenciones a porcentajes
-        const maxPuntosConvenciones = 16;
-        const promedioPuntosConvencionesPorcentaje = promedioPuntosConvenciones.map(total_puntos_convenciones => (total_puntos_convenciones / maxPuntosConvenciones) * 100);
-
-            // Convertir la puntuacion a porcentajes
-            const maxPuntuacion = 4; // Ajusta este valor según el máximo posible de puntuacion
-            const promedioPuntuacionPorcentaje = promedioPuntuacion.map(puntuacion => (puntuacion / maxPuntuacion) * 100);
-            
-            // Convertir el uso_mayuscula a porcentajes
-            const maxUsoMayuscula = 4; // Ajusta este valor según el máximo posible de uso_mayuscula
-            const promedioUsoMayusculaPorcentaje = promedioUsoMayuscula.map(uso_mayuscula => (uso_mayuscula / maxUsoMayuscula) * 100);
-
-            // Convertir la correspondencia_fonologica a porcentajes
-            const maxCorrespondenciaFonologica = 4; // Ajusta este valor según el máximo posible de correspondencia_fonologica
-            const promedioCorrespondenciaFonologicaPorcentaje = promedioCorrespondenciaFonologica.map(correspondencia_fonologica => (correspondencia_fonologica / maxCorrespondenciaFonologica) * 100);
-
-            // Convertir la correspondencia_ortografica a porcentajes
-            const maxCorrespondenciaOrtografica = 4; // Ajusta este valor según el máximo posible de correspondencia_ortografica
-            const promedioCorrespondenciaOrtograficaPorcentaje = promedioCorrespondenciaOrtografica.map(correspondencia_ortografica => (correspondencia_ortografica / maxCorrespondenciaOrtografica) * 100);
-            
     // CEACIÓN DE LOS GRÁFICOS
     <?php include 'InformeGrupal-Graficos.php'; ?>
 

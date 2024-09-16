@@ -237,7 +237,7 @@
                 //     }
                 // });
     
-        // Crear el gráfico de barras horizontal para promedio de total_puntos_composicion_escrita en porcentaje
+        // Crear el gráfico de barras horizontal para promedio de total_puntos_grafismo en porcentaje
         const ctxPuntosTotalesComposicionEscrita = document.getElementById('myChartPuntosTotalesComposicionEscrita').getContext('2d');
         const myChartPuntosTotalesComposicionEscrita = new Chart(ctxPuntosTotalesComposicionEscrita, {
             type: 'bar',
@@ -413,76 +413,3 @@
                 //         }
                 //     }
                 // });
-
-        // Crear el gráfico de barras horizontal para promedio de total_puntos_convenciones en porcentaje
-        const ctxPuntosTotalesConvenciones = document.getElementById('myChartPuntosTotalesConvenciones').getContext('2d');
-        const myChartPuntosTotalesConvenciones = new Chart(ctxPuntosTotalesConvenciones, {
-            type: 'bar',
-            data: {
-                labels: grados,
-                datasets: [{
-                    label: 'Puntos Totales por Grado (%)',
-                    data: promedioPuntosConvencionesPorcentaje,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1,
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                // maintainAspectRatio: false, // No mantener la relación de aspecto
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        max: 100 // El máximo en el eje x es 100%
-                    }
-                }
-            }
-        });
-
-        // Crear el gráfico de barras horizontal para promedio de Convenciones en porcentaje
-                const ctxConvenciones = document.getElementById('myChartConvenciones').getContext('2d');
-                const myChartConvenciones = new Chart(ctxConvenciones, {
-                    type: 'bar',
-                    data: {
-                        labels: grados,
-                        datasets: [{
-                            label: 'Puntuación (%)',
-                            data: promedioPuntuacionPorcentaje,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1,
-                        },
-                        {
-                            label: 'Uso mayuscula (%)',
-                            data: promedioUsoMayusculaPorcentaje,
-                            backgroundColor: 'rgba(255, 206, 86, 0.2)', // Amarillo
-                            borderColor: 'rgba(255, 206, 86, 1)', // Amarillo
-                            borderWidth: 1,
-                        },
-                        {
-                            label: 'Correspondencia fonológica (%)',
-                            data: promedioCorrespondenciaFonologicaPorcentaje,
-                            backgroundColor: 'rgba(153, 102, 255, 0.2)', // Morado
-                            borderColor: 'rgba(153, 102, 255, 1)', // Morado
-                            borderWidth: 1,
-                        },
-                        {
-                            label: 'Correspondencia ortográfica (%)',
-                            data: promedioCorrespondenciaOrtograficaPorcentaje,
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)', // Rojo
-                            borderColor: 'rgba(255, 99, 132, 1)', // Rojo
-                            borderWidth: 1,
-                        }]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        // maintainAspectRatio: false, // No mantener la relación de aspecto
-                        scales: {
-                            x: {
-                                beginAtZero: true,
-                                max: 100 // El máximo en el eje x es 100%
-                            }
-                        }
-                    }
-                });

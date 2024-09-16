@@ -130,7 +130,7 @@ $result = $conn->query($sql);
         <!-- Filtro por Nombre -->
         <div class="filter-box">
             <form method="get" action="">
-                <label for="nombre"><center>Nombre:</center></label>
+                <label for="nombre">Filtrar por Nombre:</label>
                 <input type="text" id="nombre" name="nombre" value="<?php echo htmlspecialchars($filtro_nombre); ?>">
                 <input type="hidden" name="grado" value="<?php echo $filtro_grado; ?>">
                 <input type="hidden" name="division" value="<?php echo $filtro_division; ?>">
@@ -143,7 +143,7 @@ $result = $conn->query($sql);
         <!-- Filtro por Apellido -->
         <div class="filter-box">
             <form method="get" action="">
-                <label for="apellido"><center>Apellido:</center></label>
+                <label for="apellido">Filtrar por Apellido:</label>
                 <input type="text" id="apellido" name="apellido" value="<?php echo htmlspecialchars($filtro_apellido); ?>">
                 <input type="hidden" name="grado" value="<?php echo $filtro_grado; ?>">
                 <input type="hidden" name="division" value="<?php echo $filtro_division; ?>">
@@ -153,10 +153,10 @@ $result = $conn->query($sql);
             </form>
         </div>
 
-        <!-- Filtro por Grado y division-->
+        <!-- Filtro por Grado -->
         <div class="filter-box">
             <form method="get" action="">
-                <label for="grado"><center>Grado:</center></label>
+                <label for="grado">Filtrar por Grado:</label>
                 <select name="grado" id="grado" onchange="this.form.submit()">
                     <option value="">Todos</option>
                     <?php foreach ($grados as $grado): ?>
@@ -165,8 +165,17 @@ $result = $conn->query($sql);
                         </option>
                     <?php endforeach; ?>
                 </select>
-  
-                <label for="division"><center>División:</center></label>
+                <input type="hidden" name="division" value="<?php echo $filtro_division; ?>">
+                <input type="hidden" name="nombre" value="<?php echo $filtro_nombre; ?>">
+                <input type="hidden" name="apellido" value="<?php echo $filtro_apellido; ?>">
+                <input type="hidden" name="items_per_page" value="<?php echo isset($_GET['items_per_page']) ? $_GET['items_per_page'] : 10; ?>">
+            </form>
+        </div>
+
+        <!-- Filtro por División -->
+        <div class="filter-box">
+            <form method="get" action="">
+                <label for="division">Filtrar por División:</label>
                 <select name="division" id="division" onchange="this.form.submit()">
                     <option value="">Todas</option>
                     <?php foreach ($divisiones as $division): ?>
@@ -175,6 +184,7 @@ $result = $conn->query($sql);
                         </option>
                     <?php endforeach; ?>
                 </select>
+                <input type="hidden" name="grado" value="<?php echo $filtro_grado; ?>">
                 <input type="hidden" name="nombre" value="<?php echo $filtro_nombre; ?>">
                 <input type="hidden" name="apellido" value="<?php echo $filtro_apellido; ?>">
                 <input type="hidden" name="items_per_page" value="<?php echo isset($_GET['items_per_page']) ? $_GET['items_per_page'] : 10; ?>">
@@ -184,7 +194,7 @@ $result = $conn->query($sql);
         <!-- Combo box para seleccionar cantidad de ítems por página -->
         <div class="filter-box">
             <form method="get" action="">
-                <label for="items_per_page"><center>Items /<br> página:</center></label>
+                <label for="items_per_page">Items por página:</label>
                 <select name="items_per_page" id="items_per_page" onchange="this.form.submit()">
                     <?php foreach ($items_per_page_options as $option): ?>
                         <option value="<?php echo $option; ?>" <?php if ($results_per_page == $option || ($results_per_page == PHP_INT_MAX && $option === 'todos')) echo 'selected'; ?>>
@@ -275,32 +285,18 @@ $result = $conn->query($sql);
                         <?php endif; ?>
                     </a>
                 </th>
-
                 <th>
-                    Trimestre
-                    <a href="?sort=trimestre&order=<?php echo $sort_field === 'trimestre' ? $order_toggle : 'ASC'; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
-                        <?php if ($sort_field === 'trimestre' && $order === 'ASC'): ?>
+                    Fecha
+                    <a href="?sort=fecha&order=<?php echo $sort_field === 'fecha' ? $order_toggle : 'ASC'; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
+                        <?php if ($sort_field === 'fecha' && $order === 'ASC'): ?>
                             &#9650;
-                        <?php elseif ($sort_field === 'trimestre' && $order === 'DESC'): ?>
+                        <?php elseif ($sort_field === 'fecha' && $order === 'DESC'): ?>
                             &#9660;
                         <?php else: ?>
                             &#9651;
                         <?php endif; ?>
                     </a>
                 </th>
-                <th>
-                    Año
-                    <a href="?sort=anio&order=<?php echo $sort_field === 'anio' ? $order_toggle : 'ASC'; ?>&grado=<?php echo $filtro_grado; ?>&division=<?php echo $filtro_division; ?>&nombre=<?php echo $filtro_nombre; ?>&apellido=<?php echo $filtro_apellido; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
-                        <?php if ($sort_field === 'anio' && $order === 'ASC'): ?>
-                            &#9650;
-                        <?php elseif ($sort_field === 'anio' && $order === 'DESC'): ?>
-                            &#9660;
-                        <?php else: ?>
-                            &#9651;
-                        <?php endif; ?>
-                    </a>
-                </th>
-
                 <th>Archivo</th>
                 <th>Acciones</th>
             </tr>
@@ -319,8 +315,7 @@ $result = $conn->query($sql);
                         <td><?php echo htmlspecialchars($row['grado']); ?></td>
                         <td><?php echo htmlspecialchars($row['division']); ?></td>
                         <td><?php echo htmlspecialchars($row['total_puntos']); ?></td>
-                        <td><?php echo htmlspecialchars($row['trimestre']); ?></td>
-                        <td><?php echo htmlspecialchars($row['anio']); ?></td>
+                        <td><?php echo htmlspecialchars($row['fecha']); ?></td>
                         <td style="text-align: center;">
                             <?php if (!empty($row['archivo'])): ?>
                                 <i class="fas fa-check-circle icon-yes"></i>

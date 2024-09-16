@@ -97,7 +97,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Evaluaciones</title>
+    <title>Screening de Escritura</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" type="text/css" href="../../css/styles.css">
     <!-- Enlace a Font Awesome -->
@@ -107,11 +107,11 @@ $result = $conn->query($sql);
 
 <body>
 
-    <?php   $GLOBALS['titulo'] = "Screening de IA JEL Aprendizaje";
+    <?php   $GLOBALS['titulo'] = "Screening de Escritura";
             include '../../_header.php';
     ?>
 
-    <h1>Listado de Evaluaciones</h1>
+    <h1>Informe Individual (vista detallada)</h1>
 
     <?php if (isset($_SESSION['message'])): ?>
         <div class="alert alert-info">

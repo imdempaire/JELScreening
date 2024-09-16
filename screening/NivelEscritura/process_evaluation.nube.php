@@ -1,4 +1,5 @@
 <?php
+    // En esta version le agregue los totales por grafismo, composicion escrita y convenciones.
     session_start();
     include '../_conexionMySQL.php';
     
@@ -18,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_estudiante = $_POST['student_id'];
     $grado = $_POST['grado'];
     $division = $_POST['division'];
+    $trimestre = $_POST['trimestre'];
+    $anio = $_POST['anio'];
     $observaciones = $_POST['observaciones'];
 
     // Incluir los archivos de descripciones, recomendaciones y ejercicios
@@ -35,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $file_type = mime_content_type($_FILES['evaluation_file']['tmp_name']);
         
         if (in_array($file_type, $allowed_types)) {
-            $file_name = basename($_FILES['evaluation_file']['name']);
+            $file_name = $colegio.$nombre.$apellido.basename($_FILES['evaluation_file']['name']);
             $file_path = $upload_dir . $file_name;
             if (move_uploaded_file($_FILES['evaluation_file']['tmp_name'], $file_path)) {
                 $file_uploaded = true;
@@ -63,21 +66,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correspondencia_ortografica = isset($_POST['orthographic_correspondence']) ? (int)$_POST['orthographic_correspondence'] : 0;
 
     // Sumar todas las puntuaciones
-    $total_puntos = $tipografia + $claridad + $tamaño + $presion + $emplazamiento_renglon +
-                    $repeticiones + $vocabulario + $conectores + $longitud + $puntuacion +
-                    $uso_mayuscula + $correspondencia_fonologica + $correspondencia_ortografica;
+        $total_puntos = $tipografia + $claridad + $tamaño + $presion + $emplazamiento_renglon +
+                    $repeticiones + $vocabulario + $conectores + $longitud + 
+                    $puntuacion + $uso_mayuscula + $correspondencia_fonologica + $correspondencia_ortografica;
+
+        $total_puntos_grafismo = $tipografia + $claridad + $tamaño + $presion + $emplazamiento_renglon;
+        $total_puntos_composicion_escrita = $repeticiones + $vocabulario + $conectores + $longitud;
+        $total_puntos_convenciones = $puntuacion + $uso_mayuscula + $correspondencia_fonologica + $correspondencia_ortografica;
 
     // Insertar en la base de datos
     $sql = "INSERT INTO evaluaciones (
-                colegio, nombre, apellido, id_estudiante, grado, tipografia, claridad, tamano, presion,
-                emplazamiento_renglon, repeticiones, vocabulario, conectores, longitud,
-                puntuacion, uso_mayuscula, correspondencia_fonologica,
-                correspondencia_ortografica, total_puntos, archivo, division, observaciones
+                colegio, nombre, apellido, id_estudiante, grado,
+                tipografia, claridad, tamano, presion, emplazamiento_renglon, 
+                repeticiones, vocabulario, conectores, longitud,
+                puntuacion, uso_mayuscula, correspondencia_fonologica, correspondencia_ortografica,
+                total_puntos, total_puntos_grafismo, total_puntos_composicion_escrita, total_puntos_convenciones,
+                archivo, division, observaciones, trimestre, anio
             ) VALUES (
-                '$colegio', '$nombre', '$apellido', '$id_estudiante', '$grado', $tipografia, $claridad, $tamaño, $presion,
-                $emplazamiento_renglon, $repeticiones, $vocabulario, $conectores, $longitud,
-                $puntuacion, $uso_mayuscula, $correspondencia_fonologica,
-                $correspondencia_ortografica, $total_puntos, '$file_name', '$division', '$observaciones'
+                '$colegio', '$nombre', '$apellido', '$id_estudiante', '$grado',
+                $tipografia, $claridad, $tamaño, $presion, $emplazamiento_renglon, 
+                $repeticiones, $vocabulario, $conectores, $longitud,
+                $puntuacion, $uso_mayuscula, $correspondencia_fonologica, $correspondencia_ortografica, 
+                $total_puntos, $total_puntos_grafismo, $total_puntos_composicion_escrita, $total_puntos_convenciones,
+                '$file_name', '$division', '$observaciones', '$trimestre', $anio
             )";
 
 //    if ($conn->query($sql) === TRUE) {

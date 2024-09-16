@@ -2,7 +2,17 @@
     session_start(); // Asegúrate de iniciar la sesión
     include '../_conexionMySQL.php';
 
-// Determinar los filtros seleccionados para el filtro
+
+
+
+
+
+
+
+
+
+
+    // Determinar los filtros seleccionados para el filtro
 $filtro_nombre = isset($_GET['nombre']) ? $_GET['nombre'] : '';
 $filtro_colegio = isset($_GET['colegio']) ? $_GET['colegio'] : '';
 $filtro_tipo = isset($_GET['tipo']) ? $_GET['tipo'] : '';
@@ -47,6 +57,7 @@ if ($result_tipos->num_rows > 0) {
     }
 }
 
+// 
 $sql_paises = "SELECT DISTINCT Pais FROM usuarios";
 $result_paises = $conn->query($sql_paises);
 $paises = [];
@@ -108,6 +119,13 @@ $result = $conn->query($sql);
 
     <h1>Listado de Colegios</h1>
 
+
+
+
+
+
+
+
     <div class="filters-container">
         <!-- Filtro por Nombre -->
         <div class="filter-box">
@@ -162,6 +180,16 @@ $result = $conn->query($sql);
                 <input type="hidden" name="items_per_page" value="<?php echo isset($_GET['items_per_page']) ? $_GET['items_per_page'] : 10; ?>">
             </form>
         </div>
+
+
+
+
+
+
+
+
+
+
 
         <!-- Combo box para seleccionar cantidad de ítems por página -->
         <div class="filter-box">

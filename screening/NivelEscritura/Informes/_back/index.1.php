@@ -125,28 +125,13 @@
                     <option value="6to grado">6to grado</option>
                 </select>
         
-            <label for="division">División:</label>
-                <select id="division" name="division" required>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                </select>
-
-                <br><br>
-                <label for="Trimestre">Trimestre:</label>
-                <select id="trimestre" name="trimestre" required>
-                    <option value="1er trimestre">1er trimestre</option>
-                    <option value="2do trimestre">2do trimestre</option>
-                    <option value="3er trimestre">3er trimestre</option>
-                </select>
-                <label for="Año">Año:</label>
-                <select id="Año" name="Año" required>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                </select>
-
+        <label for="division">División:</label>
+            <select id="division" name="division" required>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
         
             <?php
             // Si esta logoneado como Admin, que le permita elegir el colegio.
@@ -170,39 +155,24 @@
             <label for="apellido">Apellido:</label>
             <input type="text" id="apellido" name="apellido" required><br><br>
         
-            <label for="grado">Grado:</label>
-                <select id="grado" name="grado" required>
-                    <option value="1er grado">1er grado</option>
-                    <option value="2do grado">2do grado</option>
-                    <option value="3er grado">3er grado</option>
-                    <option value="4to grado">4to grado</option>
-                    <option value="5to grado">5to grado</option>
-                    <option value="6to grado">6to grado</option>
-                </select>
+        <label for="grado">Grado:</label>
+        <select id="grado" name="grado" required>
+            <option value="1er grado">1er grado</option>
+            <option value="2do grado">2do grado</option>
+            <option value="3er grado">3er grado</option>
+            <option value="4to grado">4to grado</option>
+            <option value="5to grado">5to grado</option>
+            <option value="6to grado">6to grado</option>
+        </select>
         
-            <label for="division">División:</label>
-                <select id="division" name="division" required>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                </select>
-
-                <br><br>
-                <label for="trimestre">Trimestre:</label>
-                <select id="trimestre" name="trimestre" required>
-                    <option value="1er trimestre">1er trimestre</option>
-                    <option value="2do trimestre">2do trimestre</option>
-                    <option value="3er trimestre">3er trimestre</option>
-                </select>
-                <label for="anio">Año:</label>
-                <select id="anio" name="anio" required>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                </select>
-                <br><br>
-
+        <label for="division">División:</label>
+            <select id="division" name="division" required>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+        
             <?php
             // Si esta logoneado como Admin, que le permita elegir el colegio.
             if ($_SESSION["Nombre"] == "Admin" ) {
@@ -228,8 +198,6 @@
             <input type="hidden" id="id_hidden" name="student_id">
             <input type="hidden" id="grado_hidden" name="grado">
             <input type="hidden" id="division_hidden" name="division">
-            <input type="hidden" id="trimestre_hidden" name="trimestre">
-            <input type="hidden" id="anio_hidden" name="anio">
 
             <?php include 'indexContenido.php';?>
 
@@ -262,9 +230,6 @@
             document.getElementById('id_hidden').value = document.getElementById('id').value;
             document.getElementById('grado_hidden').value = document.getElementById('grado').value;
             document.getElementById('division_hidden').value = document.getElementById('division').value;
-            document.getElementById('trimestre_hidden').value = document.getElementById('trimestre').value;
-            document.getElementById('anio_hidden').value = document.getElementById('anio').value;
-
 
             // Limpiar y mostrar la sección de evaluación
             document.getElementById('initialForm').style.display = 'none';
@@ -285,8 +250,6 @@
             document.getElementById('id_hidden').value = document.getElementById('id').value;
             document.getElementById('grado_hidden').value = document.getElementById('grado').value;
             document.getElementById('division_hidden').value = document.getElementById('division').value;
-            document.getElementById('trimestre_hidden').value = document.getElementById('trtimestre').value;
-            document.getElementById('anio_hidden').value = document.getElementById('anio').value;
 
             // Limpiar y mostrar la sección de evaluación
             document.getElementById('initialForm').style.display = 'none';
