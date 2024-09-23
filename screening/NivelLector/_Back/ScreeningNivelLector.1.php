@@ -4,12 +4,12 @@
 <html>
 
 <?php   $GLOBALS['titulo'] = "Datos del Colegio";
-        include "../_head.php";
+        include "../../_head.php";
 ?>
 
 <body>
     <?php   $GLOBALS['titulo'] = "Screening de Lectura de JEL Aprendizaje";
-            include "../_header.php";
+            include "../../_header.php";
     ?>
     <div class="content">
         <div class="subtitle">Datos del colegio</div><br><br>

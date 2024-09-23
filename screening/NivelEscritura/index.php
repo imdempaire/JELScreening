@@ -54,24 +54,26 @@
                 $stmt->bind_result($nombre, $apellido);
                 $stmt->fetch();
                 $id_existente = true;  // Marcar que el ID existe
+                $_SESSION['nuevo_alumno'] = "false";
             } else {
                 // Si el ID no se encuentra, permitir ingresar nombre y apellido
                 echo "<p>ID no encontrado. Por favor, introduce el nombre y apellido para registrar un nuevo alumno.</p>";
                 $editable = true;  // Hacer los campos de nombre y apellido editables
+                $_SESSION['nuevo_alumno'] = "true";
             }
 
             $stmt->close();
         
         // Si se han enviado los datos de nombre y apellido para un nuevo registro
         } elseif (isset($_POST['nombre']) && isset($_POST['apellido'])) {
-            $id = $_POST['id'];
+            $id = $_POST['student_id'];
             $nombre = $_POST['nombre'];
             $apellido = $_POST['apellido'];
 
             // Preparar y ejecutar la inserción del nuevo registro en la base de datos
             $sql = "INSERT INTO alumnos (id_estudiante, nombre, apellido) VALUES (?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("iss", $id, $nombre, $apellido);
+            $stmt->bind_param("sss", $id, $nombre, $apellido);
 
             if ($stmt->execute()) {
                 echo "<p>Nuevo registro creado exitosamente.</p>";
@@ -141,7 +143,7 @@
                     <option value="3er trimestre">3er trimestre</option>
                 </select>
                 <label for="Año">Año:</label>
-                <select id="Año" name="Año" required>
+                <select id="anio" name="anio" required>
                     <option value="2022">2022</option>
                     <option value="2023">2023</option>
                     <option value="2024">2024</option>

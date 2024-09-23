@@ -5,7 +5,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "jeldata_24";
+$dbname = "test_db";
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -31,8 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = htmlspecialchars(trim($_SESSION['type']));
 
     // Validar que los campos no estén vacíos
-    // if (!empty($name) && !empty($lastname) && !empty($schooling) && !empty($age) && !empty($grade) && !empty($division) && !empty($school) && !empty($locality) && !empty($province) && !empty($country) && !empty($type)) {
-    if (!empty($name)) {
+    if (!empty($name) && !empty($lastname) && !empty($schooling) && !empty($age) && !empty($grade) && !empty($division) && !empty($school) && !empty($locality) && !empty($province) && !empty($country) && !empty($type)) {
         // Preparar y vincular
         $stmt = $conn->prepare("INSERT INTO screening (name, lastname, schooling, age, grade, division, school, locality, province, country, type, Fecha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
         if ($stmt) {

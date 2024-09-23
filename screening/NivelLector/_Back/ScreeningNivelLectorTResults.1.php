@@ -1,5 +1,5 @@
 <?php   session_start();
-        include "../_conexionMySQL.php";
+        include "../../_conexionMySQL.php";
 
 // Obtener el ID del último usuario insertado
 $sql = "SELECT id FROM screening ORDER BY id DESC LIMIT 1";
@@ -79,7 +79,7 @@ $conn->close();
 </head>
 <body>
     <?php   $GLOBALS['titulo'] = "Screening de Lectura de JEL Aprendizaje";
-            include "../_header.php";
+            include "../../_header.php";
     ?> 
     <div class="content">
         <div class="subtitle">Resultados del Screening</div><br><br>

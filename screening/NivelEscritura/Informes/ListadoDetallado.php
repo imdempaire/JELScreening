@@ -111,8 +111,8 @@ $result = $conn->query($sql);
             include '../../_header.php';
     ?>
 
-    <h1>Informe Individual (vista detallada)</h1>
-
+    <br><h1>Informe Individual (vista detallada)</h1>
+    <button class="btn btn-primary" onclick="window.print()">Imprimir Página</button><br>
     <?php if (isset($_SESSION['message'])): ?>
         <div class="alert alert-info">
             <?= $_SESSION['message'] ?>

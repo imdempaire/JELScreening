@@ -12,7 +12,7 @@
 
 
 
-    // Determinar los filtros seleccionados para el filtro
+// Determinar los filtros seleccionados para el filtro
 $filtro_nombre = isset($_GET['nombre']) ? $_GET['nombre'] : '';
 $filtro_colegio = isset($_GET['colegio']) ? $_GET['colegio'] : '';
 $filtro_tipo = isset($_GET['tipo']) ? $_GET['tipo'] : '';

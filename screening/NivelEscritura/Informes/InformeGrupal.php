@@ -232,6 +232,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
 
     <div class="container">
         <h1>Informe Grupal</h1>
+        <button class="btn btn-primary" onclick="window.print()">Imprimir Página</button><br><br>
         <form method="post" action="">
             <div class="mb-3">
                 <label for="grado" class="form-label">Seleccione el Grado</label>
@@ -250,6 +251,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 </select>
             </div>
         </form>
+
         <h2><center>Puntos totales (%)</center></h2>
         <canvas id="myChartPuntosTotales" height="8" width="100"></canvas>
         
@@ -294,6 +296,11 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
 
     </div>
     <script>
+
+        function printPage() {
+            window.print();
+        }
+
         // Obtener los datos de PHP
         const grados = <?php echo json_encode($grados); ?>;
         const promedioPuntos = <?php echo json_encode($promedio_puntos); ?>;

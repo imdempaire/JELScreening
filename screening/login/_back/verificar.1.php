@@ -14,11 +14,6 @@
                 $password=$_POST["contraseña"];
                 $sql=$conn->query(" select * from usuarios where Usuario='$usuario' and password='$password' ");
                 if ($datos=$sql->fetch_object()) {
-
-                    // Esta deberia ser la variable que identifque al colegio en la sesion
-                    // Ojo que en algunos lados, no usa esta variable, sino que usa la variable $_SESSION['Nombre'] o incluso $_SESSION['Colegio']
-                    $_SESSION["id_colegio"]=$datos->Usuario;
-                    
                     $_SESSION["Usuario_id"]=$datos->Usuario_id;
                     $_SESSION["Nombre"]=$datos->Nombre;
                     $_SESSION["Localidad"]=$datos->Localidad;

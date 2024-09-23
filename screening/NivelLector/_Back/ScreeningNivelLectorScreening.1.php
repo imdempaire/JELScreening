@@ -1,5 +1,5 @@
 <?php   session_start();
-        include "../_conexionMySQL.php";
+        include "../../_conexionMySQL.php";
 
 // Inicializar variables de sesión si no están ya establecidas
 if (!isset($_SESSION['start_time'])) {

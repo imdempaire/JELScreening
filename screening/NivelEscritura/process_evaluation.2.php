@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $total_puntos_composicion_escrita = $repeticiones + $vocabulario + $conectores + $longitud;
         $total_puntos_convenciones = $puntuacion + $uso_mayuscula + $correspondencia_fonologica + $correspondencia_ortografica;
 
-
+        
     // Insertar en la base de datos
     $sql = "INSERT INTO evaluaciones (
                 colegio, nombre, apellido, id_estudiante, grado,
@@ -112,16 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->query($sql);
         // echo "Consulta exitosa";
     
-            // Insertar en la base de datos el nuevo alumno
-            if ($_SESSION['nuevo_alumno'] == "true") {
-                $sql_alumnos = "INSERT INTO alumnos (
-                        id_estudiante, nombre, apellido
-                    ) VALUES (
-                        '$id_estudiante', '$nombre', '$apellido'
-                    )";
-                $conn->query($sql_alumnos);
-            }
-
         // No necesitas cerrar la conexión manualmente
         // $conn->close(); // Esto no es necesario en PDO
     } catch(PDOException $e) {

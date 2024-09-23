@@ -48,7 +48,7 @@
 
 <body>
     <?php   $GLOBALS['titulo'] = "Screening de Lectura de JEL Aprendizaje";
-            include "../_header.php";
+            include "../../_header.php";
     ?>
 
         <?php

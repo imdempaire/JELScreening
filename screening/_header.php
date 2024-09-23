@@ -22,7 +22,9 @@
             <?php
                 if (isset($_SESSION['Nombre'])) {
                     echo "<li><a href=\"/screening/index.php\">Pagina principal</a></li>";
+                    echo "<li><a href=\"/screening/alumnos/index.php\">Alumnos</a></li>";
                     echo "<li><a href=\"/screening/_cerrar_session.php\">Cerrar Sesión (".$_SESSION["Nombre"].")</a></li>";
+
                     if ($_SESSION['Nombre'] == "Admin") {
                         echo "<li><a href=\"/screening/admin/AdminElegirColegio.php\" style=\"color: red;\">Elegir Colegio";
                         if (isset($_SESSION['colegio'])) {
@@ -31,6 +33,7 @@
                         echo "</a></li>";
                         echo "<li><a href=\"/screening/admin/index.php\" style=\"color: red;\">Admin JEL Aprendizaje</a></li>";
                     }
+                
                 } else {
                     echo "<li><a href=\"login/signup.php\">Registrarse</a></li>";
                     echo "<li><a href=\"login/login.php\">Iniciar Sesión</a></li>";
