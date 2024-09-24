@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    session_start(); // Asegúrate de iniciar la sesión
     include '../_conexionMySQL.php';
 
 
@@ -272,20 +272,7 @@ $result = $conn->query($sql);
                 </th>
                 <th>Localidad</th>
                 <th>Provincia</th>
-
-                <th>
-                    S. Escr. <!-- Nueva columna -->
-                    <a href="?sort=total_evaluaciones&order=<?php echo $sort_field === 'total_evaluaciones' ? $order_toggle : 'ASC'; ?>&nombre=<?php echo $filtro_nombre; ?>&colegio=<?php echo $filtro_colegio; ?>&tipo=<?php echo $filtro_tipo; ?>&pais=<?php echo $filtro_pais; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
-                        <?php if ($sort_field === 'total_evaluaciones' && $order === 'ASC'): ?>
-                            &#9650;
-                        <?php elseif ($sort_field === 'total_evaluaciones' && $order === 'DESC'): ?>
-                            &#9660;
-                        <?php else: ?>
-                            &#9651;
-                        <?php endif; ?>
-                    </a>
-                </th>
-                
+                <th>S. Escr.</th> <!-- Nueva columna -->
                 <th>Logo</th>
                 <th>Acciones</th>
             </tr>
@@ -303,7 +290,7 @@ $result = $conn->query($sql);
                         <td><?php echo htmlspecialchars($row['Localidad']); ?></td>
                         <td><?php echo htmlspecialchars($row['Provincia']); ?></td>
                         <td><?php echo htmlspecialchars($row['total_evaluaciones']); ?></td> <!-- Nueva columna -->
-
+                    
                         <td style="text-align: center;">
                             <?php if (!empty($row['Logo'])): ?>
                                 <img src="../images/<?php echo htmlspecialchars($row['Logo']); ?>" alt="Logo" style="max-width: 50px;">

@@ -111,6 +111,13 @@ $result = $conn->query($sql);
 
 
 
+
+
+
+
+
+
+
 <body>
 
     <?php   $GLOBALS['titulo'] = "Screening de Escritura";

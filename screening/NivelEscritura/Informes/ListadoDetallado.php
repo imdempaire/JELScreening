@@ -105,6 +105,19 @@ $result = $conn->query($sql);
     <link rel="stylesheet" type="text/css" href="/screening/css/listado.css"> 
 </head>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <body>
 
     <?php   $GLOBALS['titulo'] = "Screening de Escritura";

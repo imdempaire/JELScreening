@@ -1,6 +1,17 @@
 <?php
-session_start();
-include '../_conexionMySQL.php';
+    session_start();
+    include '../_conexionMySQL.php';
+
+
+
+
+
+
+
+
+
+
+
 $GLOBALS['titulo'] = "Plataforma IA de Screening";
 include '../_header.php';
 
@@ -56,6 +67,7 @@ if($_SESSION['id_colegio'] == 'Admin'){
     <link rel="stylesheet" type="text/css" href="/screening/css/listado.css">
     
 </head>
+
 <body>
     <div class="container">
         <h1>Listado de Alumnos</h1>
