@@ -12,6 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $fecha_nacimiento = $_POST['fecha_nacimiento'];
+    $grado = $_POST['grado'];
+    $division = $_POST['division'];
     $sexo = $_POST['sexo'];
     $dificultad_escritura = $_POST['dificultad_escritura'];
     $dificultad_lectura = $_POST['dificultad_lectura'];
@@ -20,10 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insertar el alumno en la base de datos
 
-    $sql = "INSERT INTO alumnos (id_estudiante, nombre, apellido, id_colegio, fecha_nacimiento, sexo, dificultad_escritura, dificultad_lectura, dificultad_matematica, observaciones) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO alumnos (id_estudiante, id_colegio, nombre, apellido, grado, division, fecha_nacimiento, sexo, dificultad_escritura, dificultad_lectura, dificultad_matematica, observaciones) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssssssss", $id_estudiante, $nombre, $apellido, $id_colegio, $fecha_nacimiento, $sexo, $dificultad_escritura, $dificultad_lectura, $dificultad_matematica, $observaciones);
+    $stmt->bind_param("ssssssssssss", $id_estudiante, $id_colegio, $nombre, $apellido, $grado, $division, $fecha_nacimiento, $sexo, $dificultad_escritura, $dificultad_lectura, $dificultad_matematica, $observaciones);
 
     if ($stmt->execute()) {
         echo "<p>Alumno agregado exitosamente.</p>";
@@ -73,6 +75,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="mb-3">
                 <label for="apellido" class="form-label">Apellido</label>
                 <input type="text" class="form-control" id="apellido" name="apellido" required>
+            </div>
+            <div class="mb-3">
+                <label for="grado" class="form-label">Grado</label>
+                <input type="text" class="form-control" id="grado" name="grado" required>
+            </div>
+            <div class="mb-3">
+                <label for="division" class="form-label">Division</label>
+                <input type="text" class="form-control" id="division" name="division" required>
             </div>
             <div class="mb-3">
                 <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>

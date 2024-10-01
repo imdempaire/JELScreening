@@ -10,7 +10,7 @@
             $this->PDO = $pdo->conexion();
         }
         public function agregarNuevoUsuario($nombre,$correo,$password,$colegio,$tipo,$pais,$NoCompara,$baja,$provincia,$localidad,$logo){
-            $statement = $this->PDO->prepare("INSERT INTO usuarios values(null,:nombre, :correo, :password, :colegio, :tipo, :pais, :NoCompara, :baja,:provincia, :localidad, :logo)");
+            $statement = $this->PDO->prepare("INSERT INTO colegios values(null,:nombre, :correo, :password, :colegio, :tipo, :pais, :NoCompara, :baja,:provincia, :localidad, :logo)");
             $statement->bindParam(":nombre",$nombre);
             $statement->bindParam(":correo",$correo);
             $statement->bindParam(":password",$password);
@@ -31,7 +31,7 @@
             }
         }
         public function obtenerclave($correo){
-            $statement = $this->PDO->prepare("SELECT password FROM usuarios WHERE usuario = :correo");
+            $statement = $this->PDO->prepare("SELECT password FROM colegios WHERE usuario = :correo");
             $statement->bindParam(":correo",$correo);
             return ($statement->execute()) ? $statement->fetch()['password'] : false;
         }

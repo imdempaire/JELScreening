@@ -12,7 +12,7 @@
 
                 $usuario=$_POST["correo"];
                 $password=$_POST["contraseña"];
-                $sql=$conn->query(" select * from usuarios where Usuario='$usuario' and password='$password' ");
+                $sql=$conn->query(" select * from colegios where Usuario='$usuario' and password='$password' ");
                 if ($datos=$sql->fetch_object()) {
 
                     // Esta deberia ser la variable que identifque al colegio en la sesion

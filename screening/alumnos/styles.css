@@ -75,9 +75,9 @@ h2 {
 }
 
 .rectangle input[type="radio"]:checked + label {
-    border-color: #007BFF;
+    border-color: #4c6baf;
     background-color: #e0f0ff;
-    color: #007BFF;
+    color: #4c6baf;
     font-weight: bold;
 }
 
@@ -86,7 +86,7 @@ button {
     width: 100%;
     padding: 10px;
     margin-top: 30px;
-    background-color: #007BFF;
+    background-color: #4c6baf;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -115,7 +115,7 @@ th, td {
 }
 
 th {
-    background-color: #007BFF;
+    background-color: #4c6baf;
     color: white;
 }
 

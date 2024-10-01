@@ -20,12 +20,14 @@
             <?php 
             // Si esta logoneado como Admin, que le permita elegir el colegio.
             // if ($_SESSION["Nombre"] == "Admin" ) {
-                // Obtener colegios únicos de la base de datos, tabla usuarios (=colegio) para la seleccion del colegio.
-                $sql_colegios = "SELECT DISTINCT Colegio FROM usuarios";
+                // Obtener colegios únicos de la base de datos, tabla colegio para la seleccion del colegio.
+                $sql_colegios = "SELECT DISTINCT Usuario, Colegio FROM colegios";
                 $result_colegios = $conn->query($sql_colegios);
+                $usuario = [];
                 $colegios = [];
                 if ($result_colegios->num_rows > 0) {
                     while ($row = $result_colegios->fetch_assoc()) {
+                        $usuario[] = $row['Usuario'];
                         $colegios[] = $row['Colegio'];
                     }
                 }

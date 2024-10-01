@@ -30,7 +30,7 @@ $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($current_page - 1) * $results_per_page;
 
 // Obtener el total de registros
-$sql_total = "SELECT COUNT(*) AS total FROM usuarios WHERE 1";
+$sql_total = "SELECT COUNT(*) AS total FROM colegios WHERE 1";
 if ($filtro_nombre) {
     $sql_total .= " AND Nombre LIKE '%$filtro_nombre%'";
 }
@@ -48,7 +48,7 @@ $total_rows = $result_total->fetch_assoc()['total'];
 $total_pages = ceil($total_rows / $results_per_page);
 
 // Obtener tipos y países únicos de la base de datos para los filtros
-$sql_tipos = "SELECT DISTINCT Tipo FROM usuarios";
+$sql_tipos = "SELECT DISTINCT Tipo FROM colegios";
 $result_tipos = $conn->query($sql_tipos);
 $tipos = [];
 if ($result_tipos->num_rows > 0) {
@@ -58,7 +58,7 @@ if ($result_tipos->num_rows > 0) {
 }
 
 // 
-$sql_paises = "SELECT DISTINCT Pais FROM usuarios";
+$sql_paises = "SELECT DISTINCT Pais FROM colegios";
 $result_paises = $conn->query($sql_paises);
 $paises = [];
 if ($result_paises->num_rows > 0) {
@@ -75,12 +75,14 @@ $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
 $order_toggle = $order === 'ASC' ? 'DESC' : 'ASC';
 
 // Consultar la base de datos para obtener los colegios filtrados y ordenados con paginación
-// $sql = "SELECT * FROM usuarios WHERE 1";
+// $sql = "SELECT * FROM colegios WHERE 1";
 
-// Obtener los registros de usuarios con el conteo de evaluaciones
+// Obtener los registros con el conteo de evaluaciones
 $sql = "SELECT u.*, 
-               (SELECT COUNT(*) FROM evaluaciones e WHERE e.colegio = u.Colegio) AS total_evaluaciones 
-        FROM usuarios u 
+               (SELECT COUNT(*) FROM evaluaciones e WHERE e.colegio = u.Colegio) AS total_evaluaciones,
+               (SELECT COUNT(*) FROM Screening_lectura s WHERE s.Colegio = u.Colegio) AS total_lecturas,
+               (SELECT COUNT(*) FROM alumnos a WHERE a.id_colegio = u.Usuario) AS total_alumnos 
+        FROM colegios u 
         WHERE 1";
 
 if ($filtro_nombre) {
@@ -272,13 +274,25 @@ $result = $conn->query($sql);
                 </th>
                 <th>Localidad</th>
                 <th>Provincia</th>
+                <th>Alumnos</th>
 
-                <th>
-                    S. Escr. <!-- Nueva columna -->
+                <th>S. Escr.
                     <a href="?sort=total_evaluaciones&order=<?php echo $sort_field === 'total_evaluaciones' ? $order_toggle : 'ASC'; ?>&nombre=<?php echo $filtro_nombre; ?>&colegio=<?php echo $filtro_colegio; ?>&tipo=<?php echo $filtro_tipo; ?>&pais=<?php echo $filtro_pais; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
                         <?php if ($sort_field === 'total_evaluaciones' && $order === 'ASC'): ?>
                             &#9650;
                         <?php elseif ($sort_field === 'total_evaluaciones' && $order === 'DESC'): ?>
+                            &#9660;
+                        <?php else: ?>
+                            &#9651;
+                        <?php endif; ?>
+                    </a>
+                </th>
+
+                <th>S. Lect.
+                    <a href="?sort=total_lecturas&order=<?php echo $sort_field === 'total_lecturas' ? $order_toggle : 'ASC'; ?>&nombre=<?php echo $filtro_nombre; ?>&colegio=<?php echo $filtro_colegio; ?>&tipo=<?php echo $filtro_tipo; ?>&pais=<?php echo $filtro_pais; ?>&items_per_page=<?php echo $results_per_page; ?>&page=<?php echo $current_page; ?>" style="text-decoration: none; margin-left: 5px;">
+                        <?php if ($sort_field === 'total_evaluaciones' && $order === 'ASC'): ?>
+                            &#9650;
+                        <?php elseif ($sort_field === 'total_lecturas' && $order === 'DESC'): ?>
                             &#9660;
                         <?php else: ?>
                             &#9651;
@@ -302,7 +316,9 @@ $result = $conn->query($sql);
                         <td><?php echo htmlspecialchars($row['Pais']); ?></td>
                         <td><?php echo htmlspecialchars($row['Localidad']); ?></td>
                         <td><?php echo htmlspecialchars($row['Provincia']); ?></td>
+                        <td><?php echo htmlspecialchars($row['total_alumnos']); ?></td>
                         <td><?php echo htmlspecialchars($row['total_evaluaciones']); ?></td> <!-- Nueva columna -->
+                        <td><?php echo htmlspecialchars($row['total_lecturas']); ?></td> <!-- Mostrar total de ScreeningLecturas -->
 
                         <td style="text-align: center;">
                             <?php if (!empty($row['Logo'])): ?>
