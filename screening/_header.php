@@ -1,5 +1,5 @@
 <!-- El style= del header lo copie del footer -->
-<header style="background-color: #4c6baf; color: white; padding: 10px 0; text-align: center;">
+<header>
     <center>
         <div>
             <a href="/screening/index.php"><img src="/screening/images/LogoJel.png" alt="Logo JEL" class="logo"></a>
@@ -23,9 +23,14 @@
                 if (isset($_SESSION['Nombre'])) {
                     echo "<li><a href=\"/screening/index.php\">Pagina principal</a></li>";
                     echo "<li><a href=\"/screening/alumnos/index.php\">Alumnos</a></li>";
-                    echo "<li><a href=\"/screening/docentes/index.php\">Docentes</a></li>";
-                    echo "<li><a href=\"/screening/_cerrar_session.php\">Cerrar Sesión (".$_SESSION["Nombre"].")</a></li>";
-
+                    
+                    if (isset($_SESSION['docente'])) {
+                        // echo "<li><a href=\"/screening/docentes/index.php\">Docentes (".$_SESSION["docente"].")</a></li>";
+                        echo "<li><a href=\"\">Docentes (".$_SESSION["docente"].")</a></li>";
+                    } else {
+                        echo "<li><a href=\"/screening/docentes/index.php\">Docentes</a></li>";
+                    }
+                    
                     if ($_SESSION['Nombre'] == "Admin") {
                         echo "<li><a href=\"/screening/admin/AdminElegirColegio.php\" style=\"color: red;\">Elegir Colegio";
                         if (isset($_SESSION['colegio'])) {
@@ -35,6 +40,8 @@
                         echo "<li><a href=\"/screening/admin/index.php\" style=\"color: red;\">Admin JEL Aprendizaje</a></li>";
                     }
                 
+                    echo "<li><a href=\"/screening/_cerrar_session.php\">Cerrar Sesión (".$_SESSION["Nombre"].")</a></li>";
+
                 } else {
                     echo "<li><a href=\"login/signup.php\">Registrarse</a></li>";
                     echo "<li><a href=\"login/login.php\">Iniciar Sesión</a></li>";

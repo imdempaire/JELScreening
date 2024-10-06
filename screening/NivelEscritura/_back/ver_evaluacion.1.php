@@ -44,9 +44,6 @@ if ($result->num_rows > 0) {
         <p><strong>Alumno:</strong> <?php echo htmlspecialchars($evaluacion['nombre'] . ' ' . $evaluacion['apellido']); ?></p>
         <p><strong>ID del Estudiante:</strong> <?php echo htmlspecialchars($evaluacion['id_estudiante']); ?></p>
         <p><strong>Grado:</strong> <?php echo htmlspecialchars($evaluacion['grado']); ?></p>
-        <p><strong>División:</strong> <?php echo htmlspecialchars($evaluacion['division']); ?></p>
-        <p><strong>Trimestre:</strong> <?php echo htmlspecialchars($evaluacion['trimestre']); ?></p>
-        <p><strong>Año:</strong> <?php echo htmlspecialchars($evaluacion['anio']); ?></p>
 
         <h2><center>Puntuaciones Detalladas y Recomendaciones</center></h2>
         <ul>

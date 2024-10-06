@@ -16,10 +16,8 @@
     <! -- Incluye la biblioteca de iconos de Font Awesome -->
     <script src="https://kit.fontawesome.com/e1d55cc160.js" crossorigin="anonymous"></script>
 
-</head>
-
-<! -- Graficos de la Home page -->
-<style type="text/css">
+    <! -- Graficos de la Home page -->
+    <style>
         .container {
             display: flex;
             justify-content: space-around;
@@ -39,21 +37,5 @@
             font-weight: bold;
             margin: 0;
         }
-
-    No_imprimir {
-        display: block;
-    }
-
-    @media print { /* Sets print view with media query */
-        body * {
-            display: none;
-        }
-
-        /* Sets body and elements in it to not display */
-        .print-area, .print-area * {
-            display: block;
-        }
-
-        /* Sets print area element and all its content to display */
-    }
-</style>
+    </style>
+</head>

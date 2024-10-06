@@ -35,6 +35,11 @@
             $statement->bindParam(":correo",$correo);
             return ($statement->execute()) ? $statement->fetch()['password'] : false;
         }
+        public function obtenerclavedocente($correo){
+            $statement = $this->PDO->prepare("SELECT password FROM docentes WHERE usuario = :correo");
+            $statement->bindParam(":correo",$correo);
+            return ($statement->execute()) ? $statement->fetch()['password'] : false;
+        }
     }
 
 ?>

@@ -14,22 +14,25 @@
     <main>
         <div class="program-container">
             <?php
-            // Depende si el usuario esta loguedo no, muestro la version final o la version de prueba. 
+            // Depende si el usuario esta loguedo no, muestro la version final o no muestro nada.
             if (isset($_SESSION['Nombre'])) {
+                echo "<a href='/screening/NivelEscritura/index-menu.php' class='program-rect'>Screening de Escritura</a>";
                 echo "<a href='/screening/NivelLector/index.php' class='program-rect'>Screening del Nivel Lector</a>";
                 echo "<a href='/screening/NivelMatematica/ScreeningNivelMatematica.php' class='program-rect'>Screening de Matematica</a>";
-                echo "<a href='/screening/NivelEscritura/index-menu.php' class='program-rect'>Screening de Escritura</a>";
-                echo "<a href='/screening/docentes/docentes_evaluacion.php' class='program-rect'>Observacion de docentes</a>";
+
+                if (!isset ($_SESSION['docente'])) {
+                    echo "<a href='/screening/NivelObservacionDocente/index.php' class='program-rect'>Observación de docentes</a>";
+                }
 
             } else {
-                // echo "<a href='/screening/NivelLector/ScreeningNivelLector-Prueba.php' class='program-rect'>Screening de Nivel Lector (PRUEBA!)</a>";
-                // echo "<a href='/screening/NivelMatematica/ScreeningNivelMatematica-Prueba.php' class='program-rect'>Screening de Matematica (PRUEBA!)</a>";
-                // echo "<a href='/screening/NivelLector/ScreeningNivelLector-Prueba.php' class='program-rect'>Screening de Escritura (PRUEBA!)</a>";
+
+                
+
             }
             ?> 
         </div>
     </main>
-    <br><br><br>
+    <br><br>
     <div class="container">
         <div class="box">
             <img src="images/clipboard-icon.png" alt="Informes generados">

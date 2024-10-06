@@ -17,7 +17,7 @@
         <div class="program-container">
             <?php
                 echo "<a href='/screening/docentes/docentes_alta.php' class='program-rect'>Alta de docente</a>";
-                echo "<a href='/screening/docentes/listado_docentes.php' class='program-rect'>Listado de docentes</a>";
+                echo "<a href='/screening/docentes/ListadoDocentes.php' class='program-rect'>Listado de docentes</a>";
             ?> 
         </div>
     </main>

@@ -20,8 +20,8 @@
             if (isset($_SESSION['Nombre'])) {
                 echo "<a href='/screening/NivelEscritura/index.php' class='program-rect'>Iniciar Screening de Escritura</a>";
                 echo "<a href='/screening/NivelEscritura/Informes/InformeGrupal.php' class='program-rect'>Informe Grupal</a>";
-                echo "<a href='/screening/NivelEscritura/Informes/ListadoResumido.php' class='program-rect'>Infomes Individuales<br>(vista resumida)</a>";
-                echo "<a href='/screening/NivelEscritura/Informes/ListadoDetallado.php' class='program-rect'>Infomes Individuales<br>(vista detallada)</a>";
+                echo "<a href='/screening/NivelEscritura/Informes/ListadoResumidoEscritura.php' class='program-rect'>Infomes Individuales<br>(vista resumida)</a>";
+                echo "<a href='/screening/NivelEscritura/Informes/ListadoDetalladoEscritura.php' class='program-rect'>Infomes Individuales<br>(vista detallada)</a>";
             } else {
                 echo "<a href='/screening/NivelLector/ScreeningNivelLector.php' class='program-rect'>Iniciar Screening de Escritura</a>";
                 echo "<a href='/screening/NivelEscritura/listado.php' class='program-rect'>Infomes individuales</a>";

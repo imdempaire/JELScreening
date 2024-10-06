@@ -33,5 +33,11 @@
             // return (password_verify($contraseña,$keydb)) ? true : false;
             return ($contraseña == $keydb) ? true : false;
         }
+        public function verificarusuariodocente($correo,$contraseña){
+            $keydb = $this->MODEL->obtenerclavedocente($correo);
+            // Le saco el encriptado para verirficar la contraseña
+            // return (password_verify($contraseña,$keydb)) ? true : false;
+            return ($contraseña == $keydb) ? true : false;
+        }
     }
 ?>
