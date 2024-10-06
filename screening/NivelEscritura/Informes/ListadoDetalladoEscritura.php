@@ -32,7 +32,7 @@ $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($current_page - 1) * $results_per_page;
 
 // Obtener el total de registros
-$sql_total = "SELECT COUNT(*) AS total FROM evaluaciones WHERE colegio = '$nombre_colegio'";
+$sql_total = "SELECT COUNT(*) AS total FROM screening_escritura WHERE colegio = '$nombre_colegio'";
 if ($filtro_grado) {
     $sql_total .= " AND grado = '$filtro_grado'";
 }
@@ -57,7 +57,7 @@ $total_rows = $result_total->fetch_assoc()['total'];
 $total_pages = ceil($total_rows / $results_per_page);
 
 // Obtener grados únicos de la base de datos para el filtro
-$sql_grados = "SELECT DISTINCT grado FROM evaluaciones WHERE colegio = '$nombre_colegio'";
+$sql_grados = "SELECT DISTINCT grado FROM screening_escritura WHERE colegio = '$nombre_colegio'";
 $result_grados = $conn->query($sql_grados);
 $grados = [];
 if ($result_grados->num_rows > 0) {
@@ -67,7 +67,7 @@ if ($result_grados->num_rows > 0) {
 }
 
 // Obtener divisiones únicas de la base de datos para el filtro
-$sql_divisiones = "SELECT DISTINCT division FROM evaluaciones WHERE colegio = '$nombre_colegio'";
+$sql_divisiones = "SELECT DISTINCT division FROM screening_escritura WHERE colegio = '$nombre_colegio'";
 $result_divisiones = $conn->query($sql_divisiones);
 $divisiones = [];
 if ($result_divisiones->num_rows > 0) {
@@ -77,7 +77,7 @@ if ($result_divisiones->num_rows > 0) {
 }
 
 // Obtener trimestres únicos de la base de datos para el filtro
-$sql_trimestres = "SELECT DISTINCT trimestre FROM evaluaciones WHERE colegio = '$nombre_colegio'";
+$sql_trimestres = "SELECT DISTINCT trimestre FROM screening_escritura WHERE colegio = '$nombre_colegio'";
 $result_trimestres = $conn->query($sql_trimestres);
 $trimestres = [];
 if ($result_trimestres->num_rows > 0) {
@@ -87,7 +87,7 @@ if ($result_trimestres->num_rows > 0) {
 }
 
 // Obtener años únicos de la base de datos para el filtro
-$sql_anios = "SELECT DISTINCT anio FROM evaluaciones WHERE colegio = '$nombre_colegio'";
+$sql_anios = "SELECT DISTINCT anio FROM screening_escritura WHERE colegio = '$nombre_colegio'";
 $result_anios = $conn->query($sql_anios);
 $anios = [];
 if ($result_anios->num_rows > 0) {
@@ -104,7 +104,7 @@ $order = isset($_GET['order']) ? $_GET['order'] : 'ASC';
 $order_toggle = $order === 'ASC' ? 'DESC' : 'ASC';
 
 // Consultar la base de datos para obtener las evaluaciones filtradas y ordenadas con paginación
-$sql = "SELECT * FROM evaluaciones WHERE colegio = '$nombre_colegio'";
+$sql = "SELECT * FROM screening_escritura WHERE colegio = '$nombre_colegio'";
 if ($filtro_grado) {
     $sql .= " AND grado = '$filtro_grado'";
 }

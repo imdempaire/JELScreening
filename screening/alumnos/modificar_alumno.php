@@ -1,6 +1,6 @@
-<?php
-session_start();
-include '../_conexionMySQL.php';
+<?php                                   
+session_start();                        
+include '../_conexionMySQL.php';        
 $GLOBALS['titulo'] = "Modificar Alumno";
 include '../_header.php';
 

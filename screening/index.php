@@ -16,7 +16,7 @@
             <?php
             // Depende si el usuario esta loguedo no, muestro la version final o no muestro nada.
             if (isset($_SESSION['Nombre'])) {
-                echo "<a href='/screening/NivelEscritura/index-menu.php' class='program-rect'>Screening de Escritura</a>";
+                echo "<a href='/screening/NivelEscritura/index.php' class='program-rect'>Screening de Escritura</a>";
                 echo "<a href='/screening/NivelLector/index.php' class='program-rect'>Screening del Nivel Lector</a>";
                 echo "<a href='/screening/NivelMatematica/ScreeningNivelMatematica.php' class='program-rect'>Screening de Matematica</a>";
 

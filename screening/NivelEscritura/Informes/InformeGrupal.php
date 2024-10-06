@@ -6,7 +6,7 @@ include '../../_conexionMySQL.php';
 $nombre_colegio = $_SESSION["Nombre"];
 
 // Obtener todos los grados disponibles
-$sql_grados = "SELECT DISTINCT grado FROM evaluaciones WHERE colegio = '$nombre_colegio'";
+$sql_grados = "SELECT DISTINCT grado FROM screening_escritura WHERE colegio = '$nombre_colegio'";
 $result_grados = $conn->query($sql_grados);
 
 $grados_disponibles = [];
@@ -21,7 +21,7 @@ if ($result_grados->num_rows > 0) {
 $grado_seleccionado = isset($_POST['grado']) ? $_POST['grado'] : $grados_disponibles[0];
 
 // Obtener las divisiones disponibles según el grado seleccionado
-$sql_divisiones = "SELECT DISTINCT division FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado'";
+$sql_divisiones = "SELECT DISTINCT division FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado'";
 $result_divisiones = $conn->query($sql_divisiones);
 
 $divisiones_disponibles = [];
@@ -38,7 +38,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
 // OBTENER LOS DATOS PARA LOS GRÁFICOS DE BARRAS
 
         // Obtener los datos para el gráfico de promedio de total_puntos
-        $sql = "SELECT grado, AVG(total_puntos) as promedio_puntos FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+        $sql = "SELECT grado, AVG(total_puntos) as promedio_puntos FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
         $result = $conn->query($sql);
         $grados = [];
         $promedio_puntos = [];
@@ -50,7 +50,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
         }
 
         // Obtener los datos para el gráfico de total_puntos_grafismo
-        $sql_total_puntos_grafismo = "SELECT grado, AVG(total_puntos_grafismo) as promedio_total_puntos_grafismo FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+        $sql_total_puntos_grafismo = "SELECT grado, AVG(total_puntos_grafismo) as promedio_total_puntos_grafismo FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
         $result_total_puntos_grafismo = $conn->query($sql_total_puntos_grafismo);
         $promedio_total_puntos_grafismo = [];
         if ($result_total_puntos_grafismo->num_rows > 0) {
@@ -60,7 +60,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
         }
 
                 // Obtener los datos para el gráfico de promedio de tipografia
-                $sql_tipografia = "SELECT grado, AVG(tipografia) as promedio_tipografia FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_tipografia = "SELECT grado, AVG(tipografia) as promedio_tipografia FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_tipografia = $conn->query($sql_tipografia);
                 $promedio_tipografia = [];
                 if ($result_tipografia->num_rows > 0) {
@@ -70,7 +70,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
 
                 // Obtener los datos para el gráfico de promedio de claridad
-                $sql_claridad = "SELECT grado, AVG(claridad) as promedio_claridad FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_claridad = "SELECT grado, AVG(claridad) as promedio_claridad FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_claridad = $conn->query($sql_claridad);
                 $promedio_claridad = [];
                 if ($result_claridad->num_rows > 0) {
@@ -80,7 +80,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
 
                 // Obtener los datos para el gráfico de promedio de tamano
-                $sql_tamano = "SELECT grado, AVG(tamano) as promedio_tamano FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_tamano = "SELECT grado, AVG(tamano) as promedio_tamano FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_tamano = $conn->query($sql_tamano);
                 $promedio_tamano = [];
                 if ($result_tamano->num_rows > 0) {
@@ -90,7 +90,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
 
                 // Obtener los datos para el gráfico de promedio de presion
-                $sql_presion = "SELECT grado, AVG(presion) as promedio_presion FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_presion = "SELECT grado, AVG(presion) as promedio_presion FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_presion = $conn->query($sql_presion);
                 $promedio_presion = [];
                 if ($result_presion->num_rows > 0) {
@@ -100,7 +100,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
 
                 // Obtener los datos para el gráfico de emplazamiento_renlon
-                $sql_emplazamiento_renglon = "SELECT grado, AVG(emplazamiento_renglon) as promedio_emplazamiento_renglon FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_emplazamiento_renglon = "SELECT grado, AVG(emplazamiento_renglon) as promedio_emplazamiento_renglon FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_emplazamiento_renglon = $conn->query($sql_emplazamiento_renglon);
                 $promedio_emplazamiento_renglon = [];
                 if ($result_emplazamiento_renglon->num_rows > 0) {
@@ -110,7 +110,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
 
         // Obtener los datos para el gráfico de total_puntos_composicion_escrita
-        $sql_total_puntos_composicion_escrita = "SELECT grado, AVG(total_puntos_composicion_escrita) as promedio_total_puntos_composicion_escrita FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+        $sql_total_puntos_composicion_escrita = "SELECT grado, AVG(total_puntos_composicion_escrita) as promedio_total_puntos_composicion_escrita FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
         $result_total_puntos_composicion_escrita = $conn->query($sql_total_puntos_composicion_escrita);
         $promedio_total_puntos_composicion_escrita = [];
         if ($result_total_puntos_composicion_escrita->num_rows > 0) {
@@ -120,7 +120,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
         }
 
                 // Obtener los datos para el gráfico de repeticiones
-                $sql_repeticiones = "SELECT grado, AVG(repeticiones) as promedio_repeticiones FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_repeticiones = "SELECT grado, AVG(repeticiones) as promedio_repeticiones FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_repeticiones = $conn->query($sql_repeticiones);
                 $promedio_repeticiones = [];
                 if ($result_repeticiones->num_rows > 0) {
@@ -130,7 +130,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
                 
                 // Obtener los datos para el gráfico de vocabulario
-                $sql_vocabulario = "SELECT grado, AVG(vocabulario) as promedio_vocabulario FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_vocabulario = "SELECT grado, AVG(vocabulario) as promedio_vocabulario FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_vocabulario = $conn->query($sql_vocabulario);
                 $promedio_vocabulario = [];
                 if ($result_vocabulario->num_rows > 0) {
@@ -140,7 +140,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
 
                 // Obtener los datos para el gráfico de conectores
-                $sql_conectores = "SELECT grado, AVG(conectores) as promedio_conectores FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_conectores = "SELECT grado, AVG(conectores) as promedio_conectores FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_conectores = $conn->query($sql_conectores);
                 $promedio_conectores = [];
                 if ($result_conectores->num_rows > 0) {
@@ -150,7 +150,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
 
                 // Obtener los datos para el gráfico de longitud
-                $sql_longitud = "SELECT grado, AVG(longitud) as promedio_longitud FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_longitud = "SELECT grado, AVG(longitud) as promedio_longitud FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_longitud = $conn->query($sql_longitud);
                 $promedio_longitud = [];
                 if ($result_longitud->num_rows > 0) {
@@ -160,7 +160,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
 
         // Obtener los datos para el gráfico de total_puntos_convenciones
-        $sql_total_puntos_convenciones = "SELECT grado, AVG(total_puntos_convenciones) as promedio_total_puntos_convenciones FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+        $sql_total_puntos_convenciones = "SELECT grado, AVG(total_puntos_convenciones) as promedio_total_puntos_convenciones FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
         $result_total_puntos_convenciones = $conn->query($sql_total_puntos_convenciones);
         $promedio_total_puntos_convenciones = [];
         if ($result_total_puntos_convenciones->num_rows > 0) {
@@ -170,7 +170,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
         }
 
                 // Obtener los datos para el gráfico de puntuacion
-                $sql_puntuacion = "SELECT grado, AVG(puntuacion) as promedio_puntuacion FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_puntuacion = "SELECT grado, AVG(puntuacion) as promedio_puntuacion FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_puntuacion = $conn->query($sql_puntuacion);
                 $promedio_puntuacion = [];
                 if ($result_puntuacion->num_rows > 0) {
@@ -180,7 +180,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
 
                 // Obtener los datos para el gráfico de uso_mayuscula
-                $sql_uso_mayuscula = "SELECT grado, AVG(uso_mayuscula) as promedio_uso_mayuscula FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_uso_mayuscula = "SELECT grado, AVG(uso_mayuscula) as promedio_uso_mayuscula FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_uso_mayuscula = $conn->query($sql_uso_mayuscula);
                 $promedio_uso_mayuscula = [];
                 if ($result_uso_mayuscula->num_rows > 0) {
@@ -190,7 +190,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
                 
                 // Obtener los datos para el gráfico de correspondencia_fonologica
-                $sql_correspondencia_fonologica = "SELECT grado, AVG(correspondencia_fonologica) as promedio_correspondencia_fonologica FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_correspondencia_fonologica = "SELECT grado, AVG(correspondencia_fonologica) as promedio_correspondencia_fonologica FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_correspondencia_fonologica = $conn->query($sql_correspondencia_fonologica);
                 $promedio_correspondencia_fonologica = [];
                 if ($result_correspondencia_fonologica->num_rows > 0) {
@@ -200,7 +200,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
                 }
 
                 // Obtener los datos para el gráfico de correspondencia_ortografica
-                $sql_correspondencia_ortografica = "SELECT grado, AVG(correspondencia_ortografica) as promedio_correspondencia_ortografica FROM evaluaciones WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
+                $sql_correspondencia_ortografica = "SELECT grado, AVG(correspondencia_ortografica) as promedio_correspondencia_ortografica FROM screening_escritura WHERE colegio = '$nombre_colegio' AND grado = '$grado_seleccionado' AND division = '$division_seleccionada' GROUP BY grado";
                 $result_correspondencia_ortografica = $conn->query($sql_correspondencia_ortografica);
                 $promedio_correspondencia_ortografica = [];
                 if ($result_correspondencia_ortografica->num_rows > 0) {

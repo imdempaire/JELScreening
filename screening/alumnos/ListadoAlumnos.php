@@ -1,6 +1,10 @@
-<?php
-    session_start();
-    include '../_conexionMySQL.php';
+<?php                                       // Se usa tanto para el listado de alumonos, como para elegir alumnos
+    session_start();                        // Si en la URL uso=ElegirAlumnoScreeningEscritura --> me deja elegir alumno y vuelve al screening
+    include '../_conexionMySQL.php';        // Si no, es el tipico listado de alumnnos
+
+// Obtener el uso de la desde la URL para saber si es para elegir un alumno para el Screening de Escritura
+// o es el tipico listado de alumnnos
+$uso = isset($_GET['uso']) ? $_GET['uso'] : 0;
 
 // Obtener el nombre del colegio de la sesión
 // Deberia ser Colegio, no nombre! Corregir en algun momento.
@@ -296,6 +300,15 @@ $result = $conn->query($sql);
 
 
             </form>
+
+            <?php if ($uso == "ElegirAlumnoScreeningEscritura"): ?>                            
+                <button type="submit">Nuevo alumno</button>                           
+            <?php else: ?>
+                <button id="printBtn">
+                    <i class="fas fa-print" style="font-size: 32px"></i>
+                </button>
+            <?php endif; ?>
+                
         </div>
     </div>
 
@@ -378,14 +391,15 @@ $result = $conn->query($sql);
                             <td><?php echo htmlspecialchars($row['grado']); ?></td>
                             <td><?php echo htmlspecialchars($row['division']); ?></td>
                             <td style="text-align: center;">
-                            <!-- Aquí puedes agregar acciones como ver, editar, borrar -->
-                            <a href="../ver_alumno.php?id=<?php echo $row['id_estudiante']; ?>" class="btn btn-info" title="Ver"><i class="fa fa-eye"></i></a>
-                            <a href="../editar_alumno.php?id=<?php echo $row['id_estudiante']; ?>" class="btn btn-warning" title="Editar"><i class="fa fa-edit"></i></a>
-                            <a href="../delete_alumno.php?id=<?php echo $row['id_estudiante']; ?>" class="btn btn-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro?');"><i class="fa fa-trash"></i></a>
-                        </td>
-
-
-
+                                <?php if ($uso == "ElegirAlumnoScreeningEscritura"): ?>                            
+                                    <a href="/screening/NivelEscritura/ScreeningNivelEscritura.php?id_estudiante=<?php echo $row['id']; ?>&nombre=<?php echo $row['nombre']; ?>&apellido=<?php echo $row['apellido']; ?>" class="btn btn-warning">Ejecutar Screeening</a>
+                                <?php else: ?>
+                                    <!-- Aquí puedes agregar acciones como ver, editar, borrar -->
+                                    <a href="../ver_alumno.php?id=<?php echo $row['id_estudiante']; ?>" class="btn btn-info" title="Ver"><i class="fa fa-eye"></i></a>
+                                    <a href="../editar_alumno.php?id=<?php echo $row['id_estudiante']; ?>" class="btn btn-warning" title="Editar"><i class="fa fa-edit"></i></a>
+                                    <a href="../delete_alumno.php?id=<?php echo $row['id_estudiante']; ?>" class="btn btn-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro?');"><i class="fa fa-trash"></i></a>
+                                <?php endif; ?>
+                            </td>
                         </tr>
                     <?php endwhile; ?>
                 <?php else: ?>

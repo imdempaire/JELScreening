@@ -2,6 +2,9 @@
     // En esta version le agregue los totales por grafismo, composicion escrita y convenciones.
     session_start();
     include '../_conexionMySQL.php';
+
+    $nombre = isset($_GET['nombre']) ? $_GET['nombre'] : '';
+    $apellido = isset($_GET['apellido']) ? $_GET['apellido'] : '';
     
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -14,14 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $colegio = $_SESSION["Nombre"];
         } 
         
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $id_estudiante = $_POST['student_id'];
-    $grado = $_POST['grado'];
-    $division = $_POST['division'];
-    $trimestre = $_POST['trimestre'];
-    $anio = $_POST['anio'];
+    // $nombre = $_POST['nombre'];
+    // $apellido = $_POST['apellido'];
+    // $id_estudiante = $_POST['student_id'];
+    // $grado = $_POST['grado'];
+    // $division = $_POST['division'];
+    // $trimestre = $_POST['trimestre'];
+    // $anio = $_POST['anio'];
     $observaciones = $_POST['observaciones'];
+
+    $id_estudiante = " ";
+    $grado = " ";
+    $division = " ";
+    $trimestre = " ";
+    $anio = 2024;
 
     // Incluir los archivos de descripciones, recomendaciones y ejercicios
     include '1-mapearvalores.php';
@@ -76,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Insertar en la base de datos
-    $sql = "INSERT INTO evaluaciones (
+    $sql = "INSERT INTO screening_escritura (
                 colegio, nombre, apellido, id_estudiante, grado,
                 tipografia, claridad, tamano, presion, emplazamiento_renglon, 
                 repeticiones, vocabulario, conectores, longitud,
@@ -110,18 +119,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
         $stmt = $conn->query($sql);
-        // echo "Consulta exitosa";
+        echo "Consulta exitosa";
     
-            // Insertar en la base de datos el nuevo alumno
-            if ($_SESSION['nuevo_alumno'] == "true") {
-                $sql_alumnos = "INSERT INTO alumnos (
-                        id_estudiante, nombre, apellido
-                    ) VALUES (
-                        '$id_estudiante', '$nombre', '$apellido'
-                    )";
-                $conn->query($sql_alumnos);
-            }
-
         // No necesitas cerrar la conexión manualmente
         // $conn->close(); // Esto no es necesario en PDO
     } catch(PDOException $e) {
