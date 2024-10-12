@@ -49,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/screening/css/listado.css">
     <script src="https://kit.fontawesome.com/e1d55cc160.js" crossorigin="anonymous"></script>
+
     <style>
         .icon-option {
             cursor: pointer;
@@ -77,12 +78,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" class="form-control" id="apellido" name="apellido" required>
             </div>
             <div class="mb-3">
-                <label for="grado" class="form-label">Grado</label>
-                <input type="text" class="form-control" id="grado" name="grado" required>
+                <!-- <label for="grado" class="form-label">Grado</label> -->
+                <!-- <input type="text" class="form-control" id="grado" name="grado" required> -->
+                <label for="grado"class="form-label">Grado:</label>
+                <select class="form-control" id="grado" name="grado" required>
+                    <option value="">Seleccione</option>
+                    <option value="1er grado">1er grado</option>
+                    <option value="2do grado">2do grado</option>
+                    <option value="3er grado">3er grado</option>
+                    <option value="4to grado">4to grado</option>
+                    <option value="5to grado">5to grado</option>
+                    <option value="6to grado">6to grado</option>
+                </select>
             </div>
             <div class="mb-3">
-                <label for="division" class="form-label">Division</label>
-                <input type="text" class="form-control" id="division" name="division" required>
+                <!-- <label for="division" class="form-label">Division</label> -->
+                <!-- <input type="text" class="form-control" id="division" name="division" required> -->
+                <label for="division" class="form-label">División:</label>
+                <select class="form-control" id="division" name="division" required>
+                    <option value="">Seleccione</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
@@ -97,34 +116,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label">Dificultad en Escritura</label>
-                <div>
+                <label class="form-label">Dificultad en Escritura:&nbsp&nbsp</label>
                     <i class="fas fa-check-circle icon-option" data-value="Si" data-field="dificultad_escritura"></i>
                     <i class="fas fa-times-circle icon-option" data-value="No" data-field="dificultad_escritura"></i>
                     <input type="hidden" id="dificultad_escritura" name="dificultad_escritura" required>
-                </div>
             </div>
             <div class="mb-3">
-                <label class="form-label">Dificultad en Lectura</label>
-                <div>
+                <label class="form-label">Dificultad en Lectura:&nbsp&nbsp</label>
                     <i class="fas fa-check-circle icon-option" data-value="Si" data-field="dificultad_lectura"></i>
                     <i class="fas fa-times-circle icon-option" data-value="No" data-field="dificultad_lectura"></i>
                     <input type="hidden" id="dificultad_lectura" name="dificultad_lectura" required>
-                </div>
             </div>
             <div class="mb-3">
-                <label class="form-label">Dificultad en Matemática</label>
-                <div>
+                <label class="form-label">Dificultad en Matemática: &nbsp&nbsp</label>
                     <i class="fas fa-check-circle icon-option" data-value="Si" data-field="dificultad_matematica"></i>
                     <i class="fas fa-times-circle icon-option" data-value="No" data-field="dificultad_matematica"></i>
                     <input type="hidden" id="dificultad_matematica" name="dificultad_matematica" required>
-                </div>
             </div>
             <div class="mb-3">
                 <label for="observaciones" class="form-label">Observaciones</label>
                 <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Agregar</button>
+            <!--  <input type="submit" value="Registrar Alumno"> -->
+            <button type="submit" class="btn btn-primary">Registar Alumno</button>
         </form>
     </div>
     <script>
@@ -142,5 +156,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             });
         });
     </script>
+
+    <?php include '../_footer.php';?>
+
 </body>
 </html>

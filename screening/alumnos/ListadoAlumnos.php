@@ -396,7 +396,7 @@ $result = $conn->query($sql);
                                 <?php else: ?>
                                     <!-- Aquí puedes agregar acciones como ver, editar, borrar -->
                                     <a href="../ver_alumno.php?id=<?php echo $row['id_estudiante']; ?>" class="btn btn-info" title="Ver"><i class="fa fa-eye"></i></a>
-                                    <a href="../editar_alumno.php?id=<?php echo $row['id_estudiante']; ?>" class="btn btn-warning" title="Editar"><i class="fa fa-edit"></i></a>
+                                    <a href="modificar_alumno.php?id=<?php echo $row['id_estudiante']; ?>" class="btn btn-warning" title="Editar"><i class="fa fa-edit"></i></a>
                                     <a href="../delete_alumno.php?id=<?php echo $row['id_estudiante']; ?>" class="btn btn-danger" title="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro?');"><i class="fa fa-trash"></i></a>
                                 <?php endif; ?>
                             </td>

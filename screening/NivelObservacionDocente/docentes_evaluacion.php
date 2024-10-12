@@ -11,10 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $id_docente = $_POST['id_docente'];
     $evaluador = $_POST['evaluador'];
+    $titulo = $_POST['titulo'];
     $fecha = date('Y-m-d'); // Obtener la fecha actual
 
     // Insertar la nueva evaluación en la tabla evaluaciones
-    $sql = "INSERT INTO docentes_evaluaciones (id_docente, evaluador, fecha) VALUES ('$id_docente', '$evaluador', '$fecha')";
+    $sql = "INSERT INTO docentes_evaluaciones (id_docente, id_colegio, evaluador, titulo, fecha) VALUES ('$id_docente', '$id_colegio', '$evaluador', '$titulo', '$fecha')";
     
     if ($conn->query($sql) === TRUE) {
         // Obtener el ID de la evaluación recién creada
@@ -37,6 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // echo "Error: " . $sql . "<br>" . $conn->error;
             
         }
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 ?>
@@ -66,20 +69,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="docente">Docente:</label>
         <select name="id_docente" required>
             <?php
-            // Consultar los docentes disponibles
-            $sql_docentes = "SELECT id, nombre, apellido FROM docentes";
-            $result = $conn->query($sql_docentes);
+                // Consultar los docentes disponibles del colegio
+                $sql_docentes = "SELECT id, nombre, apellido FROM docentes WHERE id_colegio = '$id_colegio'";
+                $result = $conn->query($sql_docentes);
 
-            // Mostrar los docentes en el select
-            while ($row = $result->fetch_assoc()) {
-                echo "<option value='" . $row['id'] . "'>" . $row['nombre'] . " " . $row['apellido'] . "</option>";
-            }
+                // Mostrar los docentes en el select
+                while ($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row['id'] . "'>" . $row['nombre'] . " " . $row['apellido'] . "</option>";
+                }
             ?>
         </select>
 
         <!-- Nombre del evaluador -->
-        <label for="evaluador">Nombre del Evaluador:</label>
+        <br><br><label for="evaluador">Nombre del Evaluador:</label>
         <input type="text" name="evaluador" required>
+
+        <!-- Titulo de la evaluación -->
+        <br><br><label for="titulo">Titulo de la evalucion:</label>
+        <input type="text" name="titulo" required>
 
 <!--    <h3>Criterios de Evaluación:</h3> -->
 
@@ -87,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 // Consultar los criterios desde la base de datos, ordenados por bloque y luego por categoría
 // $sql_criterios = "SELECT id, bloque, categoria, descripcion FROM docentes_criterios ORDER BY bloque, categoria";
-$sql_criterios = "SELECT id, bloque, categoria, descripcion FROM docentes_criterios ORDER BY id";
+$sql_criterios = "SELECT id, bloque, categoria, descripcion FROM docentes_criterios WHERE activo = 1 ORDER BY id";
 $result_criterios = $conn->query($sql_criterios);
 
 $ultimo_bloque = '';   // Variable para almacenar el último bloque mostrado

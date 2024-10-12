@@ -1,7 +1,7 @@
 <?php session_start(); // Iniciar la sesión
 include '../_conexionMySQL.php'; // Incluir la conexión a la base de datos
 
-$GLOBALS['titulo'] = "Observacion de Docentes";
+$GLOBALS['titulo'] = "Plataforma IA de Screening";
 include '../_header.php'; // Incluir el header
 
 // Obtener el id_colegio de la sesión
@@ -64,8 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="materia" required><br>
 
         <!-- Botón para enviar el formulario -->
-        <input type="submit" value="Registrar Docente">
+        <!--  <input type="submit" value="Registrar Docente"> -->
+        <button type="submit" class="btn btn-primary">Registrar Docente</button>
     </form>
 </div>
+
+<?php include '../_footer.php';?>
+
 </body>
 </html>

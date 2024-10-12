@@ -112,5 +112,8 @@ if($_SESSION['id_colegio'] == 'Admin'){
             </tbody>
         </table>
     </div>
+
+    <?php include '../_footer.php';?>
+
 </body>
 </html>
