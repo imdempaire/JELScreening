@@ -100,7 +100,9 @@ button:hover {
 }
 
 
-
+anchototal { 
+    width: 100%;
+}
 
 table {
     width: 98%;

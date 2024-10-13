@@ -1,8 +1,6 @@
 // Version: 1.1 - CEACIÓN DE LOS GRÁFICOS
 // Agrupacion de los grafico 
 
-Chart.defaults.font.size = 18;
-
         // Crear el gráfico de barras horizontal para promedio de puntos en porcentaje
         const ctxPuntosTotales = document.getElementById('myChartPuntosTotales').getContext('2d');
         const myChartPuntosTotales = new Chart(ctxPuntosTotales, {

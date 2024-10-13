@@ -136,8 +136,12 @@ $result = $conn->query($sql); // QUERY PRINCIPAL!
     <title>Screening de Escritura</title>
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="/screening/css/listado.css"> -->
+     
     <link rel="stylesheet" type="text/css" href="/screening/css/styles.css?1">
     <link rel="stylesheet" type="text/css" href="/screening/css/stylesListado.css?1">
+    
+
+    
     <!-- Enlace a Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>

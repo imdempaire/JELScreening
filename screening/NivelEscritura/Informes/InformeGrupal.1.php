@@ -217,70 +217,47 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Screening de Escritura</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-    <!-- <link rel="stylesheet" type="text/css" href="/screening/css/listado.css"> -->
 
-    <link rel="stylesheet" type="text/css" href="/screening/css/styles.css?2">
-    <link rel="stylesheet" type="text/css" href="/screening/css/stylesListado.css?2">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="../../css/styles.css">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Enlace a Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
 
     <?php   $GLOBALS['titulo'] = "Screening de Escritura";
             include '../../_header.php';
     ?>
-    
-        <div class="container">
-            <h1 style="display: inline-block;">Informe Grupal</h1>
-        </div>
-    
-        <!-- <button class="btn btn-primary" onclick="window.print()">Imprimir Página</button><br><br> -->
-        <div class="filters-container">
-            <form method="post" action="">
-            
-                <div class="filter-box">
-                    <label for="grado" class="form-label">Seleccione el Grado:</label>
-                    <select class="form-select" id="grado" name="grado" onchange="this.form.submit()">
-                        <?php foreach ($grados_disponibles as $grado): ?>
-                            <option value="<?= $grado ?>" <?= $grado == $grado_seleccionado ? 'selected' : '' ?>><?= $grado ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
 
-                <div class="filter-box">
-                    <label for="division" class="form-label">Seleccione la División:</label>
-                    <select class="form-select" id="division" name="division" onchange="this.form.submit()">
-                        <?php foreach ($divisiones_disponibles as $division): ?>
-                            <option value="<?= $division ?>" <?= $division == $division_seleccionada ? 'selected' : '' ?>><?= $division ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-            
-            </form>
-
-                <button id="printBtn">
-                    <i class="fas fa-print" style="font-size: 32px"></i>
-                </button>
-
-        
-        </div>
-
+    <div class="container">
+        <h1>Informe Grupal</h1>
+        <button class="btn btn-primary" onclick="window.print()">Imprimir Página</button><br><br>
+        <form method="post" action="">
+            <div class="mb-3">
+                <label for="grado" class="form-label">Seleccione el Grado</label>
+                <select class="form-select" id="grado" name="grado" onchange="this.form.submit()">
+                    <?php foreach ($grados_disponibles as $grado): ?>
+                        <option value="<?= $grado ?>" <?= $grado == $grado_seleccionado ? 'selected' : '' ?>><?= $grado ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="division" class="form-label">Seleccione la División</label>
+                <select class="form-select" id="division" name="division" onchange="this.form.submit()">
+                    <?php foreach ($divisiones_disponibles as $division): ?>
+                        <option value="<?= $division ?>" <?= $division == $division_seleccionada ? 'selected' : '' ?>><?= $division ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </form>
 
         <h2><center>Puntos totales (%)</center></h2>
-        <!-- Original, lo cambie para imprimir -->
-        <!-- <canvas id="myChartPuntosTotales" height="8" width="100"></canvas> -->
-        <canvas id="myChartPuntosTotales" height="10" width="100"></canvas>
-
+        <canvas id="myChartPuntosTotales" height="8" width="100"></canvas>
+        
         <br><br><br>
         <h2><center>Grafismo (%)</center></h2>
-        <!-- Original, lo cambie para imprimir -->
-        <!-- <canvas id="myChartPuntosTotalesGrafismo" height="8" width="100"></canvas> --> 
-        <canvas id="myChartPuntosTotalesGrafismo" height="10" width="100"></canvas>
+        <canvas id="myChartPuntosTotalesGrafismo" height="8" width="100"></canvas>
         <br><br>
             <!-- <h2><center>Detalle Grafismo (%)</center></h2> -->
             <canvas id="myChartDetalleGrafismo" height="24" width="100"></canvas>
@@ -297,9 +274,7 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
         
         <br><br><br>
         <h2><center>Composición escrita (%)</center></h2>
-        <!-- Original, lo cambie para imprimir -->
-        <!-- <canvas id="myChartPuntosTotalesComposicionEscrita" height="8" width="100"></canvas> -->
-        <canvas id="myChartPuntosTotalesComposicionEscrita" height="10" width="100"></canvas>
+        <canvas id="myChartPuntosTotalesComposicionEscrita" height="8" width="100"></canvas>
         <br><br>
             <!-- <h2><center>Detalle ComposicionEscrita (%)</center></h2> -->
             <canvas id="myChartComposicionEscrita" height="20" width="100"></canvas>
@@ -314,44 +289,17 @@ $division_seleccionada = isset($_POST['division']) ? $_POST['division'] : $divis
 
         <br><br><br>
         <h2><center>Convenciones (%)</center></h2>
-        <!-- Original, lo cambie para imprimir -->
-        <!-- <canvas id="myChartPuntosTotalesConvenciones" height="8" width="100"></canvas> -->
-        <canvas id="myChartPuntosTotalesConvenciones" height="10" width="100"></canvas>
+        <canvas id="myChartPuntosTotalesConvenciones" height="8" width="100"></canvas>
         <br><br>
             <!-- <h2><center>Detalle Convenciones (%)</center></h2> -->
             <canvas id="myChartConvenciones" height="20" width="100"></canvas>
-    
 
-    <script type="text/javascript">
-        document.getElementById('printBtn').addEventListener('click', () => { window.print() }); // Prints area to which class was assigned only
-    </script>
-
+    </div>
     <script>
 
         function printPage() {
             window.print();
         }
-
-        // Para imprimir los gráficos
-        window.addEventListener('beforeprint', () => {
-            myChartPuntosTotales.resize(1000, 1000);
-            myChartPuntosTotalesGrafismo.resize(1000, 1000);
-            myChartDetalleGrafismo.resize(1000, 1000);
-            myChartPuntosTotalesComposicionEscrita.resize(1000, 1000);
-            myChartComposicionEscrita.resize(1000, 1000);
-            myChartPuntosTotalesConvenciones.resize(1000, 1000);
-            // myChartConvenciones.resize(1000, 1000);
-
-        });
-        window.addEventListener('afterprint', () => {
-            myChartPuntosTotales.resize();
-            myChartPuntosTotalesGrafismo.resize();
-            myChartDetalleGrafismo.resize();
-            myChartPuntosTotalesComposicionEscrita.resize();
-            myChartComposicionEscrita.resize();
-            myChartPuntosTotalesConvenciones.resize();
-            // myChartConvenciones.resize();
-        });
 
         // Obtener los datos de PHP
         const grados = <?php echo json_encode($grados); ?>;
